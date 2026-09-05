@@ -9,8 +9,7 @@ class DocumentModel(Base):
 
     id = Column(String, primary_key=True)
     title = Column(String)
-    num_of_pages = Column(Integer)
-    tenant_id = Column(String)
+    tenant_id = Column(String, ForeignKey("tenants.id"))
     specialization = Column(String)
     status = Column(String)
     

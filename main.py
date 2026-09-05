@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from infrastructure.database import engine
 from infrastructure.tenant_repository import TenantRepository
 from infrastructure.user_repository import UserRepository
+from infrastructure.document_repository import DocumentRepository
 
 
 app = FastAPI()
@@ -26,3 +27,10 @@ def get_users_by_tenant_id(tenant_id: str):
     repository = UserRepository(session)
     users = repository.getUsers_by_tenant(tenant_id=tenant_id)
     return users
+
+@app.get("/tenantdocs/{tenant_id}")
+def get_docs_by_tenant_id(tenant_id: str):
+    session = Session()
+    repository = DocumentRepository(session)
+    documents = repository.getAll_documents_by_tenant_id(tenant_id=tenant_id)
+    return documents
