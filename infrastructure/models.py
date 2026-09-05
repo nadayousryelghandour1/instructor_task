@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer,ForeignKey
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -19,3 +19,11 @@ class TenantModel(Base):
 
     id = Column(String, primary_key=True)
     name = Column(String)
+
+class UserModel(Base):
+    __tablename__ = "users"
+    
+    id = Column(String , primary_key=True)
+    name = Column(String)
+    tenant_id = Column(String, ForeignKey("tenants.id"))
+    role = Column(String)
