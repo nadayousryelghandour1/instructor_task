@@ -1,9 +1,10 @@
-from dataclasses import dataclass
+from dataclasses import dataclass , field
+from uuid import uuid4
 
 
 @dataclass
 class User:
-    id: str
     name: str
     tenant_id: str
     role: str
+    id: str = field(default_factory=lambda : str(uuid4()))

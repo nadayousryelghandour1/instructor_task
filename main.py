@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from api.tenants_router import router as tenants_router
-from api.users_router import router as users_router
-from api.documents_router import router as documents_router
+from api.routes.tenants_router import router as tenants_router
+from api.routes.users_router import router as users_router
+from api.routes.documents_router import router as documents_router
 
 app = FastAPI()
 

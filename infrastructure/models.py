@@ -26,3 +26,12 @@ class UserModel(Base):
     name = Column(String)
     tenant_id = Column(String, ForeignKey("tenants.id"))
     role = Column(String)
+    
+    
+class DocumentChunkModel(Base):
+    __tablename__ = "document_chunks"
+    
+    document_id = Column(String, ForeignKey("documents.id"))
+    chunk_id= Column(String, primary_key=True)
+    page_number = Column(Integer)
+    text= Column(String)
