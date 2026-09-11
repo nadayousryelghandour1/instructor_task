@@ -1,6 +1,7 @@
 from infrastructure.file_reader import FileReader
 from application.chunker import Chunker
 from infrastructure.document_chunk_repository import DocumentChunkRepository
+from infrastructure.embedding_generator import generate_embedding
 
 
 class ProcessDocumentUseCase:
@@ -17,6 +18,7 @@ class ProcessDocumentUseCase:
 
     def execute(
         self,
+        tenant_id: str,
         document_id: str,
         file_path: str,
         content_type: str,
@@ -24,6 +26,13 @@ class ProcessDocumentUseCase:
 
         pages = self.file_reader.read(file_path, content_type)
 
-        chunks = self.chunker.chunk_pages(document_id, pages)
+        chunks = self.chunker.chunk_pages(
+            tenant_id,
+            document_id,
+            pages
+        )
+
+        for chunk in chunks:
+            chunk.embedding = generate_embedding(chunk.text)
 
         self.chunk_repository.add_many(chunks)

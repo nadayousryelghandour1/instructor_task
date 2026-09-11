@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer,ForeignKey
+from sqlalchemy import Column, String, Integer,ForeignKey, Text
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -37,3 +37,4 @@ class DocumentChunkModel(Base):
     chunk_id= Column(String, primary_key=True)
     page_number = Column(Integer)
     text= Column(String)
+    embedding = Column(Text, nullable=False)

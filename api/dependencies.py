@@ -14,7 +14,10 @@ from infrastructure.security import verify_access_token
 from infrastructure.user_repository import UserRepository
 from infrastructure.tenant_repository import TenantRepository
 from application.onboard_tenant_use_case import OnboardTenantUseCase
-
+from application.search_documents_use_case import SearchDocumentsUseCase
+from application.answer_question_use_case import AnswerQuestionUseCase
+from application.prompt_builder import PromptBuilder
+from infrastructure.llm_service import LLMService
 
 def get_session():
     session = SessionLocal()
@@ -85,3 +88,23 @@ def get_onboard_use_case(
     user_repository: UserRepository = Depends(get_user_repository),
 ):
     return OnboardTenantUseCase(tenant_repository, user_repository)
+
+
+def get_search_documents_use_case(
+    chunk_repository: DocumentChunkRepository = Depends(get_chunk_repository),
+):
+    return SearchDocumentsUseCase(chunk_repository)
+
+def get_answer_question_use_case(
+    search_documents: SearchDocumentsUseCase = Depends(
+        get_search_documents_use_case
+    ),
+):
+    prompt_builder = PromptBuilder()
+    llm_service = LLMService()
+
+    return AnswerQuestionUseCase(
+        search_documents=search_documents,
+        prompt_builder=prompt_builder,
+        llm_service=llm_service,
+    )

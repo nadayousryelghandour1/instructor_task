@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, UploadFile, BackgroundTasks, Depends
+from fastapi import APIRouter, UploadFile, BackgroundTasks, Depends
 
 from application.upload_document import UploadDocumentUseCase
 from application.get_document import GetDocument
@@ -7,7 +7,6 @@ from infrastructure.document_repository import DocumentRepository
 
 from api.dependencies import (
     get_chunk_repository,
-    get_current_user,
     get_document_repository,
     get_upload_use_case,
     get_document_use_case,

@@ -8,5 +8,6 @@ class DocumentChunk:
     tenant_id: str
     page_number: int
     text: str
+    embedding: list[float] | None = None
     chunk_id: str =field(default_factory=lambda : str(uuid4()))
 

@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 from infrastructure.models import DocumentChunkModel
 from domain.document_chunk import DocumentChunk
-
+from application.similarity import cosine_similarity
+import json
 
 class DocumentChunkRepository:
     def __init__(self, session: Session):
@@ -14,6 +15,7 @@ class DocumentChunkRepository:
                 tenant_id = chunk.tenant_id,
                 page_number=chunk.page_number,
                 text=chunk.text,
+                embedding=json.dumps(chunk.embedding),
                 chunk_id=chunk.chunk_id,
             )
             for chunk in document_chunks
@@ -22,7 +24,7 @@ class DocumentChunkRepository:
         self.session.commit()
 
     def get_chunk_by_id(self, tenant_id, document_id, chunk_id):
-            document_chunk_model = (
+        document_chunk_model = (
             self.session.query(DocumentChunkModel)
             .filter(
                 DocumentChunkModel.tenant_id == tenant_id,
@@ -32,26 +34,78 @@ class DocumentChunkRepository:
             .first()
             )
     
-            if document_chunk_model is None:
-                return None
+        if document_chunk_model is None:
+            return None
     
-            return DocumentChunk(
-                document_id=document_chunk_model.document_id,
-                tenant_id=document_chunk_model.tenant_id,
-                page_number=document_chunk_model.page_number,
-                text=document_chunk_model.text,
-                chunk_id=document_chunk_model.chunk_id,
-            )
+        return DocumentChunk(
+            document_id=document_chunk_model.document_id,
+            tenant_id=document_chunk_model.tenant_id,
+            page_number=document_chunk_model.page_number,
+            text=document_chunk_model.text,
+            embedding=json.loads(document_chunk_model.embedding),
+            chunk_id=document_chunk_model.chunk_id,
+        )
             
-    def get_chunks_by_document_id(self, document_id):
-            document_chunk_models = self.session.query(DocumentChunkModel).filter(DocumentChunkModel.document_id == document_id).all()
-            return [
-                DocumentChunk(
-                    document_id=d.document_id,
-                    tenant_id=d.tenant_id,
-                    page_number=d.page_number,
-                    text=d.text,
-                    chunk_id=d.chunk_id,
-                )
-                for d in document_chunk_models
-            ]        
+    def get_chunks_by_document_id(self, tenant_id, document_id):
+        document_chunk_models = self.session.query(DocumentChunkModel).filter(DocumentChunkModel.tenant_id == tenant_id, DocumentChunkModel.document_id == document_id).all()
+        return [
+             DocumentChunk(
+                document_id=d.document_id,
+                tenant_id=d.tenant_id,
+                page_number=d.page_number,
+                text=d.text,
+                embedding=json.loads(d.embedding),
+                chunk_id=d.chunk_id,
+            )
+            for d in document_chunk_models
+        ]        
+        
+        
+    def get_chunk_by_tenant_id(self, tenant_id: str) -> list[DocumentChunk]:
+
+        document_chunk_models = (
+            self.session.query(DocumentChunkModel)
+            .filter(DocumentChunkModel.tenant_id == tenant_id)
+            .all()
+        )
+
+        return [
+            DocumentChunk(
+                document_id=chunk.document_id,
+                tenant_id=chunk.tenant_id,
+                page_number=chunk.page_number,
+                text=chunk.text,
+                embedding=json.loads(chunk.embedding),
+                chunk_id=chunk.chunk_id,
+            )
+            for chunk in document_chunk_models
+        ]
+
+    def search_similar(
+        self,
+        tenant_id: str,
+        query_embedding: list[float],
+        top_k: int = 5
+    ) -> list[DocumentChunk]:
+
+        chunks = self.get_by_tenant_id(tenant_id)
+
+        scored_chunks = []
+
+        for chunk in chunks:
+            score = cosine_similarity(
+                query_embedding,
+                chunk.embedding
+            )
+
+            scored_chunks.append((score, chunk))
+
+        scored_chunks.sort(
+            key=lambda item: item[0],
+            reverse=True
+        )
+
+        return [
+            chunk
+            for score, chunk in scored_chunks[:top_k]
+        ]
