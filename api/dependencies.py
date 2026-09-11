@@ -7,14 +7,13 @@ from application.register_user_use_case import RegisterUserUseCase
 from infrastructure.database import SessionLocal
 from infrastructure.document_repository import DocumentRepository
 from infrastructure.document_chunk_repository import DocumentChunkRepository
-from infrastructure.file_reader import FileReader
-from application.chunker import Chunker
 from application.upload_document import UploadDocumentUseCase
 from application.process_document import ProcessDocumentUseCase
 from application.get_document import GetDocument
 from infrastructure.security import verify_access_token
 from infrastructure.user_repository import UserRepository
 from infrastructure.tenant_repository import TenantRepository
+from application.onboard_tenant_use_case import OnboardTenantUseCase
 
 
 def get_session():
@@ -79,3 +78,10 @@ def get_register_use_case(
     user_repository: UserRepository = Depends(get_user_repository),
 ):
     return RegisterUserUseCase(user_repository)
+
+
+def get_onboard_use_case(
+    tenant_repository: TenantRepository = Depends(get_tenants_repository),
+    user_repository: UserRepository = Depends(get_user_repository),
+):
+    return OnboardTenantUseCase(tenant_repository, user_repository)
