@@ -1,6 +1,9 @@
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
+from fastapi.security import OAuth2PasswordBearer
 
+from application.login_use_case import LoginUseCase
+from application.register_user_use_case import RegisterUserUseCase
 from infrastructure.database import SessionLocal
 from infrastructure.document_repository import DocumentRepository
 from infrastructure.document_chunk_repository import DocumentChunkRepository
@@ -9,6 +12,7 @@ from application.chunker import Chunker
 from application.upload_document import UploadDocumentUseCase
 from application.process_document import ProcessDocumentUseCase
 from application.get_document import GetDocument
+from infrastructure.security import verify_access_token
 from infrastructure.user_repository import UserRepository
 from infrastructure.tenant_repository import TenantRepository
 
@@ -47,3 +51,31 @@ def get_user_repository(session: Session = Depends(get_session)):
 
 def get_tenants_repository(session: Session = Depends(get_session)):
     return TenantRepository(session)
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+
+def get_current_user(token: str = Depends(oauth2_scheme)) -> dict:
+    try:
+        payload = verify_access_token(token)
+        return payload
+    
+    except ValueError:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
+
+
+def verify_tenant_access(
+    tenant_id: str,
+    current_user: dict = Depends(get_current_user)
+):
+    if current_user["tenant_id"] != tenant_id:
+        raise HTTPException(status_code=403, detail="Access denied")
+    
+def get_login_use_case(
+    user_repository: UserRepository = Depends(get_user_repository),
+):
+    return LoginUseCase(user_repository)
+
+def get_register_use_case(
+    user_repository: UserRepository = Depends(get_user_repository),
+):
+    return RegisterUserUseCase(user_repository)

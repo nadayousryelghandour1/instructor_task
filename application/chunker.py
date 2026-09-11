@@ -8,6 +8,7 @@ class Chunker:
 
     def chunk_pages(
         self,
+        tenant_id: str,
         document_id: str,
         pages: list[dict]
     ) -> list[DocumentChunk]:
@@ -23,6 +24,7 @@ class Chunker:
 
                 chunk = DocumentChunk(
                     document_id=document_id,
+                    tenant_id = tenant_id,
                     page_number=page_number,
                     text=chunk_text
                 )

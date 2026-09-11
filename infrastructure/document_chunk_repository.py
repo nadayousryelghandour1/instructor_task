@@ -11,6 +11,7 @@ class DocumentChunkRepository:
         models = [
             DocumentChunkModel(
                 document_id=chunk.document_id,
+                tenant_id = chunk.tenant_id,
                 page_number=chunk.page_number,
                 text=chunk.text,
                 chunk_id=chunk.chunk_id,
@@ -20,10 +21,11 @@ class DocumentChunkRepository:
         self.session.add_all(models)
         self.session.commit()
 
-    def get_chunk_by_id(self, document_id, chunk_id):
+    def get_chunk_by_id(self, tenant_id, document_id, chunk_id):
             document_chunk_model = (
             self.session.query(DocumentChunkModel)
             .filter(
+                DocumentChunkModel.tenant_id == tenant_id,
                 DocumentChunkModel.document_id == document_id,
                 DocumentChunkModel.chunk_id == chunk_id
             )
@@ -35,6 +37,7 @@ class DocumentChunkRepository:
     
             return DocumentChunk(
                 document_id=document_chunk_model.document_id,
+                tenant_id=document_chunk_model.tenant_id,
                 page_number=document_chunk_model.page_number,
                 text=document_chunk_model.text,
                 chunk_id=document_chunk_model.chunk_id,
@@ -45,6 +48,7 @@ class DocumentChunkRepository:
             return [
                 DocumentChunk(
                     document_id=d.document_id,
+                    tenant_id=d.tenant_id,
                     page_number=d.page_number,
                     text=d.text,
                     chunk_id=d.chunk_id,
