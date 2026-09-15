@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI
 from api.routes.auth_router import router as auth_router
 from api.routes.tenants_router import router as tenants_router
@@ -18,4 +21,3 @@ app.include_router(chat_router)
 @app.get("/")
 def read_root():
     return {"message": "Domain Copilot is alive!"}
-

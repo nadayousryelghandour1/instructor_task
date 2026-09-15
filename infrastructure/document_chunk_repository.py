@@ -4,6 +4,7 @@ from domain.document_chunk import DocumentChunk
 from application.similarity import cosine_similarity
 import json
 
+
 class DocumentChunkRepository:
     def __init__(self, session: Session):
         self.session = session
@@ -12,7 +13,7 @@ class DocumentChunkRepository:
         models = [
             DocumentChunkModel(
                 document_id=chunk.document_id,
-                tenant_id = chunk.tenant_id,
+                tenant_id=chunk.tenant_id,
                 page_number=chunk.page_number,
                 text=chunk.text,
                 embedding=json.dumps(chunk.embedding),
@@ -32,11 +33,11 @@ class DocumentChunkRepository:
                 DocumentChunkModel.chunk_id == chunk_id
             )
             .first()
-            )
-    
+        )
+
         if document_chunk_model is None:
             return None
-    
+
         return DocumentChunk(
             document_id=document_chunk_model.document_id,
             tenant_id=document_chunk_model.tenant_id,
@@ -45,11 +46,19 @@ class DocumentChunkRepository:
             embedding=json.loads(document_chunk_model.embedding),
             chunk_id=document_chunk_model.chunk_id,
         )
-            
+
     def get_chunks_by_document_id(self, tenant_id, document_id):
-        document_chunk_models = self.session.query(DocumentChunkModel).filter(DocumentChunkModel.tenant_id == tenant_id, DocumentChunkModel.document_id == document_id).all()
+        document_chunk_models = (
+            self.session.query(DocumentChunkModel)
+            .filter(
+                DocumentChunkModel.tenant_id == tenant_id,
+                DocumentChunkModel.document_id == document_id
+            )
+            .all()
+        )
+
         return [
-             DocumentChunk(
+            DocumentChunk(
                 document_id=d.document_id,
                 tenant_id=d.tenant_id,
                 page_number=d.page_number,
@@ -58,10 +67,12 @@ class DocumentChunkRepository:
                 chunk_id=d.chunk_id,
             )
             for d in document_chunk_models
-        ]        
-        
-        
-    def get_chunk_by_tenant_id(self, tenant_id: str) -> list[DocumentChunk]:
+        ]
+
+    def get_chunk_by_tenant_id(
+        self,
+        tenant_id: str
+    ) -> list[DocumentChunk]:
 
         document_chunk_models = (
             self.session.query(DocumentChunkModel)
@@ -86,9 +97,9 @@ class DocumentChunkRepository:
         tenant_id: str,
         query_embedding: list[float],
         top_k: int = 5
-    ) -> list[DocumentChunk]:
+    ) -> list[tuple[float, DocumentChunk]]:
 
-        chunks = self.get_by_tenant_id(tenant_id)
+        chunks = self.get_chunk_by_tenant_id(tenant_id)
 
         scored_chunks = []
 
@@ -105,7 +116,4 @@ class DocumentChunkRepository:
             reverse=True
         )
 
-        return [
-            chunk
-            for score, chunk in scored_chunks[:top_k]
-        ]
+        return scored_chunks[:top_k]

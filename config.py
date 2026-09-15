@@ -1,0 +1,15 @@
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+    similarity_threshold: float = 0.7
+    openai_api_key: str
+    groq_api_key: str
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+    )
+
+
+settings = Settings()

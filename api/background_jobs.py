@@ -5,7 +5,7 @@ from application.chunker import Chunker
 from application.process_document import ProcessDocumentUseCase
 
 
-def process_document_background(document_id: str, file_path: str, content_type: str):
+def process_document_background(document_id: str, file_path: str, content_type: str, tenant_id: str):
     session = SessionLocal()
     try:
         chunk_repository = DocumentChunkRepository(session)
@@ -15,6 +15,7 @@ def process_document_background(document_id: str, file_path: str, content_type: 
             chunk_repository=chunk_repository,
         )
         process_use_case.execute(
+            tenant_id=tenant_id,        # <-- ضيفي السطر ده
             document_id=document_id,
             file_path=file_path,
             content_type=content_type,

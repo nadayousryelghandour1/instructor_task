@@ -15,10 +15,10 @@ class SearchDocumentsUseCase:
 
         query_embedding = generate_embedding(question)
 
-        chunks = self.dochunk_chunk_repository.search_similar(
+        scored_chunks = self.dochunk_chunk_repository.search_similar(
             tenant_id=tenant_id,
             query_embedding=query_embedding,
             top_k=top_k
         )
 
-        return chunks
+        return scored_chunks
