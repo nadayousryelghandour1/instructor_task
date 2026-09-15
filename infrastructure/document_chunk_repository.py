@@ -3,6 +3,7 @@ from infrastructure.models import DocumentChunkModel
 from domain.document_chunk import DocumentChunk
 from application.similarity import cosine_similarity
 import json
+import re
 
 
 class DocumentChunkRepository:
@@ -21,6 +22,7 @@ class DocumentChunkRepository:
             )
             for chunk in document_chunks
         ]
+
         self.session.add_all(models)
         self.session.commit()
 
@@ -30,7 +32,7 @@ class DocumentChunkRepository:
             .filter(
                 DocumentChunkModel.tenant_id == tenant_id,
                 DocumentChunkModel.document_id == document_id,
-                DocumentChunkModel.chunk_id == chunk_id
+                DocumentChunkModel.chunk_id == chunk_id,
             )
             .first()
         )
@@ -52,7 +54,7 @@ class DocumentChunkRepository:
             self.session.query(DocumentChunkModel)
             .filter(
                 DocumentChunkModel.tenant_id == tenant_id,
-                DocumentChunkModel.document_id == document_id
+                DocumentChunkModel.document_id == document_id,
             )
             .all()
         )
@@ -71,7 +73,7 @@ class DocumentChunkRepository:
 
     def get_chunk_by_tenant_id(
         self,
-        tenant_id: str
+        tenant_id: str,
     ) -> list[DocumentChunk]:
 
         document_chunk_models = (
@@ -96,7 +98,7 @@ class DocumentChunkRepository:
         self,
         tenant_id: str,
         query_embedding: list[float],
-        top_k: int = 5
+        top_k: int = 5,
     ) -> list[tuple[float, DocumentChunk]]:
 
         chunks = self.get_chunk_by_tenant_id(tenant_id)
@@ -106,14 +108,48 @@ class DocumentChunkRepository:
         for chunk in chunks:
             score = cosine_similarity(
                 query_embedding,
-                chunk.embedding
+                chunk.embedding,
             )
 
             scored_chunks.append((score, chunk))
 
         scored_chunks.sort(
             key=lambda item: item[0],
-            reverse=True
+            reverse=True,
+        )
+
+        return scored_chunks[:top_k]
+
+    def search_by_keyword(
+        self,
+        tenant_id: str,
+        question: str,
+        top_k: int = 5,
+    ) -> list[tuple[int, DocumentChunk]]:
+
+        chunks = self.get_chunk_by_tenant_id(tenant_id)
+
+        keywords = re.findall(r"\b\w+\b", question.lower())
+
+        scored_chunks = []
+
+        for chunk in chunks:
+            chunk_words = set(
+                re.findall(r"\b\w+\b", chunk.text.lower())
+            )
+
+            score = sum(
+                1
+                for keyword in keywords
+                if keyword in chunk_words
+            )
+
+            if score > 0:
+                scored_chunks.append((score, chunk))
+
+        scored_chunks.sort(
+            key=lambda item: item[0],
+            reverse=True,
         )
 
         return scored_chunks[:top_k]

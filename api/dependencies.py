@@ -147,5 +147,4 @@ def get_answer_question_use_case(
         search_documents=search_documents,
         prompt_builder=prompt_builder,
         llm_service=llm_service,
-        similarity_threshold=settings.similarity_threshold,
     )
