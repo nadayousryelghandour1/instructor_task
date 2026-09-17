@@ -1,6 +1,6 @@
 from infrastructure.embedding_generator import generate_embedding
 from application.hybrid_search import reciprocal_rank_fusion
-
+from application.similarity import cosine_similarity
 
 class SearchDocumentsUseCase:
 
@@ -22,6 +22,30 @@ class SearchDocumentsUseCase:
             query_embedding=query_embedding,
             top_k=top_k,
         )
+        all_chunks = self.dochunk_chunk_repository.get_chunk_by_tenant_id(tenant_id)
+
+        for chunk in all_chunks:
+            if chunk.page_number == 17:
+                score = cosine_similarity(
+                    query_embedding,
+                    chunk.embedding,
+                )
+
+        print(
+            "PAGE 17 DIRECT SCORE:",
+            score,
+            "chunk_id=",
+            chunk.chunk_id,
+        )
+        print("DENSE RESULTS")
+        for rank, (score, chunk) in enumerate(dense_results, start=1):
+            print(
+                rank,
+                "score=",score,
+                "page=",chunk.page_number,
+                "chunk_id=",chunk.chunk_id,
+        )
+
 
         # Keyword Retrieval
         keyword_results = self.dochunk_chunk_repository.search_by_keyword(
@@ -29,6 +53,16 @@ class SearchDocumentsUseCase:
             question=question,
             top_k=top_k,
         )
+        
+        
+        print("KEYWORD RESULTS")
+        for rank, (score, chunk) in enumerate(keyword_results, start=1):
+            print(
+                rank,
+                 "score=",score,
+                 "page=",chunk.page_number,
+                "chunk_id=",chunk.chunk_id,
+       )
 
         # Fusion
         hybrid_results = reciprocal_rank_fusion(

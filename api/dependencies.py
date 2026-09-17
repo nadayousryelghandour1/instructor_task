@@ -18,11 +18,11 @@ from application.search_documents_use_case import SearchDocumentsUseCase
 from application.answer_question_use_case import AnswerQuestionUseCase
 from application.prompt_builder import PromptBuilder
 from infrastructure.llm_service import LLMService
-from config import settings
 
 
 def get_session():
     session = SessionLocal()
+
     try:
         yield session
     finally:
@@ -139,6 +139,9 @@ def get_answer_question_use_case(
     search_documents: SearchDocumentsUseCase = Depends(
         get_search_documents_use_case
     ),
+    document_repository: DocumentRepository = Depends(
+        get_document_repository
+    ),
 ):
     prompt_builder = PromptBuilder()
     llm_service = LLMService()
@@ -147,4 +150,5 @@ def get_answer_question_use_case(
         search_documents=search_documents,
         prompt_builder=prompt_builder,
         llm_service=llm_service,
+        document_repository=document_repository,
     )

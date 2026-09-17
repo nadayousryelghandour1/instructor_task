@@ -1,7 +1,10 @@
 from fastapi import APIRouter, Depends
 
 from application.answer_question_use_case import AnswerQuestionUseCase
-from api.dependencies import get_answer_question_use_case , get_current_user
+from api.dependencies import (
+    get_answer_question_use_case,
+    get_current_user,
+)
 
 router = APIRouter()
 

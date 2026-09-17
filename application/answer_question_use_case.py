@@ -5,10 +5,12 @@ class AnswerQuestionUseCase:
         search_documents,
         prompt_builder,
         llm_service,
+        document_repository,
     ):
         self.search_documents = search_documents
         self.prompt_builder = prompt_builder
         self.llm_service = llm_service
+        self.document_repository = document_repository
 
     def execute(
         self,
@@ -16,7 +18,6 @@ class AnswerQuestionUseCase:
         question: str,
         top_k: int = 5,
     ):
-
         scored_chunks = self.search_documents.execute(
             tenant_id=tenant_id,
             question=question,
@@ -25,7 +26,10 @@ class AnswerQuestionUseCase:
 
         if not scored_chunks:
             return {
-                "answer": "I couldn't find enough information in the provided documents to answer this question.",
+                "answer": (
+                    "I couldn't find enough information in the provided "
+                    "documents to answer this question."
+                ),
                 "sources": [],
             }
 
@@ -41,13 +45,23 @@ class AnswerQuestionUseCase:
 
         answer = self.llm_service.generate(prompt)
 
-        return {
-            "answer": answer,
-            "sources": [
+        sources = []
+
+        for chunk in chunks:
+            document = self.document_repository.get_by_id(
+                document_id=chunk.document_id,
+                tenant_id=tenant_id,
+            )
+
+            sources.append(
                 {
                     "document_id": chunk.document_id,
+                    "document_title": document.title if document else None,
                     "page_number": chunk.page_number,
                 }
-                for chunk in chunks
-            ],
+            )
+
+        return {
+            "answer": answer,
+            "sources": sources,
         }

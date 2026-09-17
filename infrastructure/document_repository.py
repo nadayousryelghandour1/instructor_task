@@ -36,3 +36,13 @@ class DocumentRepository:
             specialization=document_model.specialization,
             status=document_model.status
         )
+        
+    def update_status(self, document_id: str, status: str) -> None:
+        document_model = (
+        self.session.query(DocumentModel)
+        .filter(DocumentModel.id == document_id)
+        .first()
+    )
+        if document_model is not None:
+            document_model.status = status
+            self.session.commit()

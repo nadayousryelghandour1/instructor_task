@@ -1,0 +1,1200 @@
+{
+  "summary": {
+    "total_cases": 33,
+    "in_corpus_cases": 27,
+    "adversarial_cases": 6,
+    "retrieval_hit_rate": 0.9629629629629629,
+    "citation_rate": 0.9629629629629629,
+    "refusal_correctness": 0.8333333333333334
+  },
+  "results": [
+    {
+      "id": "Q01",
+      "type": "in_corpus",
+      "question": "What processes are included in the transmitter (Tx) stage of a digital communication system?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The transmitter (Tx) stage in a digital‑communication system is responsible for **converting the signal from the transducer into a waveform that can be sent over the chosen channel**.  In practice this means taking the low‑pass, band‑limited baseband signal (e.g., a voice signal limited to ≈ 4 kHz) and **translating its frequency band to a higher frequency that the transmission medium can carry**【Source 1】.  \n\nNo other specific transmitter‑side processes (such as filtering, amplification, modulation, etc.) are listed in the provided documents; those details are not available in the given context.",
+      "retrieved_sources": [
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 4
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 12
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 19
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 13
+        },
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 21
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "type": "in_corpus",
+      "question": "What is a channel in a digital communication system?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "In a digital communication system a **channel** is the physical medium that carries the transmitted signal from the transmitter (Tx) to the receiver (Rx). It can be a guided medium such as a copper or fiber‑optic cable, or an unguided medium such as the open air and any obstacles (walls, buildings, trees, etc.) that the signal must traverse 【Source 3】. In other words, the channel is the pathway—wired or wireless—through which the signal propagates between the source and the sink 【Source 4】.",
+      "retrieved_sources": [
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 5
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 4
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 4
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 6
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 6
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "type": "in_corpus",
+      "question": "What is the difference between licensed and unlicensed frequency bands?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "Licensed frequency bands require operators to obtain a formal license, typically by paying a fee, which grants them exclusive or prioritized rights to use those specific frequencies [Source 1]. Examples of licensed bands include 800 MHz, 1.8 GHz, and 2.1 GHz [Source 1].\n\nUnlicensed frequency bands can be used by anyone without obtaining a license, provided that users comply with regulatory limits such as maximum transmit power, spectral mask, duty‑cycle, and maximum transmit time [Source 1][Source 3]. These bands are shared among many devices and their availability can differ by country. Common unlicensed bands are the ISM bands at 900 MHz, 2.4 GHz, 5 GHz, and 60 GHz [Source 1][Source 3].",
+      "retrieved_sources": [
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 9
+        },
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 8
+        },
+        {
+          "document_id": "f8cd3e77-056d-4312-ac80-afe1252e7843",
+          "document_title": "WN-Lecture-8.pdf",
+          "page_number": 12
+        },
+        {
+          "document_id": "b9456cd6-0a9e-4455-bd42-18d5e8333de1",
+          "document_title": "WN-Lecture-6.pdf",
+          "page_number": 19
+        },
+        {
+          "document_id": "f8cd3e77-056d-4312-ac80-afe1252e7843",
+          "document_title": "WN-Lecture-8.pdf",
+          "page_number": 13
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "type": "in_corpus",
+      "question": "What is a decibel (dB) and what is it used for?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "A decibel (dB) is a **logarithmic unit** that expresses the ratio between two quantities—usually power or intensity levels【Source 1】. Because it uses a logarithmic scale, a relatively small change in dB corresponds to a large change in the actual value being measured.\n\nThe dB is widely employed in many technical fields:\n\n* **Acoustics** – to quantify sound pressure levels (e.g., how loud a noise is).  \n* **Electronics and communications** – to describe signal strength, gain, or loss in circuits and transmission systems.  \n\nThese applications rely on the same principle of comparing an initial value (V₁ or P₁) to a final value (V₂ or P₂) using the formulas:\n\n* dB = 10 log₁₀ (P₂/P₁) for power ratios, and  \n* dB = 20 log₁₀ (V₂/V₁) for voltage or current ratios【Source 1】.  \n\nThus, a decibel provides a convenient way to represent very large or very small ratios in a compact, easily interpretable form across acoustics, electronics, and communication engineering【Source 1】.",
+      "retrieved_sources": [
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 4
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 6
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 13
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 7
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 14
+        }
+      ]
+    },
+    {
+      "id": "Q05",
+      "type": "in_corpus",
+      "question": "How many bits per symbol does 16-QAM provide?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "16‑QAM carries **4 bits per symbol**【Source 1】.",
+      "retrieved_sources": [
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 29
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 30
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 34
+        },
+        {
+          "document_id": "581443a6-fad3-47ee-848b-1e0ff65324bd",
+          "document_title": "DC 5.pptx",
+          "page_number": 27
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 15
+        }
+      ]
+    },
+    {
+      "id": "Q06",
+      "type": "in_corpus",
+      "question": "Give examples of directive antenna types.",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "Examples of directive antenna types include:\n\n- **Array (Yagi)** antennas [Source 1]  \n- **Helical** antennas [Source 1]  \n- **Reflector (Parabolic)** antennas [Source 1]  \n- **Horn (Aperture)** antennas [Source 1]  \n- **Cell‑site** antennas [Source 1]  \n- **Microstrip** antennas [Source 1]",
+      "retrieved_sources": [
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 21
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 3
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 20
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 37
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 28
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "type": "in_corpus",
+      "question": "What assumption allows a wireless channel to be modelled as a linear time-invariant (LTI) system?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The wireless channel can be treated as an LTI system by **assuming that the channel’s characteristics do not change (i.e., remain constant) over the time interval needed for estimation and signal processing**. In other words, the channel’s time variation is considered negligible, allowing the use of a time‑invariant impulse response \\(h_c(t)\\) to model the link【Source 1】. This “time‑invariance” assumption is what permits the linear time‑invariant modeling of the wireless channel.",
+      "retrieved_sources": [
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 22
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 19
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 20
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 21
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 9
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "type": "in_corpus",
+      "question": "What is coherence bandwidth?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "Coherence bandwidth ( \\(B_c\\) ) is a characteristic of small‑scale fading that defines the span of frequencies over which a wireless channel’s frequency response stays essentially unchanged – i.e., the channel behaves almost the same for any frequency inside that range [Source 1]. In practice, when a transmitted signal’s bandwidth \\(B\\) is larger than the coherence bandwidth (\\(B > B_c\\)), different frequency components of the signal experience different attenuation, leading to frequency‑selective fading [Source 5].",
+      "retrieved_sources": [
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 15
+        },
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 17
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 37
+        },
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 16
+        },
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 7
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "type": "in_corpus",
+      "question": "What are the four antenna configurations related to diversity in wireless communication?",
+      "retrieval_hit": false,
+      "citation_hit": false,
+      "refusal_correct": null,
+      "answer": "The provided documents do not list four specific antenna configurations associated with diversity in wireless communication. The sources describe the general concept of diversity, space diversity, and the use of multiple antennas, but they do not enumerate four distinct antenna configurations. Therefore, that information is not available in the provided documents.",
+      "retrieved_sources": [
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 5
+        },
+        {
+          "document_id": "b9456cd6-0a9e-4455-bd42-18d5e8333de1",
+          "document_title": "WN-Lecture-6.pdf",
+          "page_number": 26
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 15
+        },
+        {
+          "document_id": "b9456cd6-0a9e-4455-bd42-18d5e8333de1",
+          "document_title": "WN-Lecture-6.pdf",
+          "page_number": 6
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 12
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "type": "in_corpus",
+      "question": "What problem does OFDM address compared to single carrier transmission?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "OFDM was introduced to solve the inter‑symbol interference (ISI) problem that plagues single‑carrier transmission. In a single‑carrier system, multipath reflections cause delayed copies of the signal to overlap in time, spreading each symbol and making it difficult for the receiver to separate successive symbols, which leads to errors【Source 1】.  \n\nBy splitting a wide‑band channel into many narrow subcarriers (i.e., using frequency‑division multiplexing), OFDM transmits the data in parallel on these subcarriers, which greatly reduces the duration of each individual symbol and therefore mitigates the ISI caused by multipath. This multi‑carrier approach is explicitly presented as a way to “avoid ISI”【Source 2】【Source 5】.",
+      "retrieved_sources": [
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 25
+        },
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 29
+        },
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 34
+        },
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 26
+        },
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 27
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "type": "in_corpus",
+      "question": "What is the ISM band and give an example of its bandwidth.",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The ISM band (Industrial, Scientific, and Medical band) is the portion of the radio spectrum that is allocated for license‑free operation of devices such as wireless LANs, as well as for industrial, scientific and medical equipment [Source 1].  \n\nISM bands come in many different frequency ranges, and their bandwidths vary. For example, the 6.765 MHz ISM band provides a bandwidth of 30 kHz, while the 5.725 GHz ISM band provides a bandwidth of 150 MHz [Source 1].",
+      "retrieved_sources": [
+        {
+          "document_id": "f8cd3e77-056d-4312-ac80-afe1252e7843",
+          "document_title": "WN-Lecture-8.pdf",
+          "page_number": 13
+        },
+        {
+          "document_id": "c56de7fd-45f4-4a8e-8586-56a26b17f631",
+          "document_title": "DC 6.pptx",
+          "page_number": 24
+        },
+        {
+          "document_id": "c56de7fd-45f4-4a8e-8586-56a26b17f631",
+          "document_title": "DC 6.pptx",
+          "page_number": 22
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 33
+        },
+        {
+          "document_id": "c56de7fd-45f4-4a8e-8586-56a26b17f631",
+          "document_title": "DC 6.pptx",
+          "page_number": 48
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "type": "in_corpus",
+      "question": "What is a femtocell?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "A femtocell is a small, low‑power cellular base station that is typically intended for installation in a home or a small‑business environment【Source 1】.",
+      "retrieved_sources": [
+        {
+          "document_id": "c5afd368-7ac8-4c2c-b3d6-23ecfac4f4f2",
+          "document_title": "WN-Lecture-9.pdf",
+          "page_number": 27
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 12
+        },
+        {
+          "document_id": "c56de7fd-45f4-4a8e-8586-56a26b17f631",
+          "document_title": "DC 6.pptx",
+          "page_number": 29
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 37
+        },
+        {
+          "document_id": "c5afd368-7ac8-4c2c-b3d6-23ecfac4f4f2",
+          "document_title": "WN-Lecture-9.pdf",
+          "page_number": 3
+        }
+      ]
+    },
+    {
+      "id": "Q13",
+      "type": "in_corpus",
+      "question": "What is a notable property of LSTM networks?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "A notable property of Long‑Short Term Memory (LSTM) networks is their ability to retain information over extremely long time spans.  They can learn “very deep learning” tasks that require remembering events that occurred thousands or even millions of discrete time steps earlier, handling long delays and signals that contain both low‑ and high‑frequency components【Source 1】.",
+      "retrieved_sources": [
+        {
+          "document_id": "04b9ee27-1a4f-4e28-b43e-33f19a342838",
+          "document_title": "lecture1_ComputerVision.pdf",
+          "page_number": 22
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 10
+        },
+        {
+          "document_id": "04b9ee27-1a4f-4e28-b43e-33f19a342838",
+          "document_title": "lecture1_ComputerVision.pdf",
+          "page_number": 20
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 12
+        },
+        {
+          "document_id": "04b9ee27-1a4f-4e28-b43e-33f19a342838",
+          "document_title": "lecture1_ComputerVision.pdf",
+          "page_number": 21
+        }
+      ]
+    },
+    {
+      "id": "Q14",
+      "type": "in_corpus",
+      "question": "In OpenCV, what is the default color channel order when reading an image with imread()?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "When an image is read with OpenCV’s `cv2.imread()` function, the pixel data are stored in **BGR order** (blue, green, red) rather than the usual RGB ordering [Source 1].",
+      "retrieved_sources": [
+        {
+          "document_id": "ddab10d5-6146-476b-89a1-ef785db70d90",
+          "document_title": "lecture2_ComputerVision_Python.pdf",
+          "page_number": 15
+        },
+        {
+          "document_id": "ddab10d5-6146-476b-89a1-ef785db70d90",
+          "document_title": "lecture2_ComputerVision_Python.pdf",
+          "page_number": 9
+        },
+        {
+          "document_id": "ddab10d5-6146-476b-89a1-ef785db70d90",
+          "document_title": "lecture2_ComputerVision_Python.pdf",
+          "page_number": 7
+        },
+        {
+          "document_id": "ddab10d5-6146-476b-89a1-ef785db70d90",
+          "document_title": "lecture2_ComputerVision_Python.pdf",
+          "page_number": 6
+        },
+        {
+          "document_id": "a1ba13b1-f3a3-492c-b504-fe9b36064355",
+          "document_title": "Hitogram.Team2.pdf",
+          "page_number": 6
+        }
+      ]
+    },
+    {
+      "id": "Q15",
+      "type": "in_corpus",
+      "question": "What are the two main categories of data mining pattern tasks?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The two main categories of data‑mining pattern tasks are:\n\n1. **Descriptive mining** – tasks that characterize properties of the data in a target data set.  \n2. **Predictive mining** – tasks that perform induction on the current data in order to make predictions.  \n\nThese categories are defined in the provided material [Source 1].",
+      "retrieved_sources": [
+        {
+          "document_id": "d0c10fce-84d5-43c5-b9f7-5b0e368337ee",
+          "document_title": "001Lecture_1 Introduction.pdf",
+          "page_number": 24
+        },
+        {
+          "document_id": "d0c10fce-84d5-43c5-b9f7-5b0e368337ee",
+          "document_title": "001Lecture_1 Introduction.pdf",
+          "page_number": 6
+        },
+        {
+          "document_id": "d0c10fce-84d5-43c5-b9f7-5b0e368337ee",
+          "document_title": "001Lecture_1 Introduction.pdf",
+          "page_number": 7
+        },
+        {
+          "document_id": "d0c10fce-84d5-43c5-b9f7-5b0e368337ee",
+          "document_title": "001Lecture_1 Introduction.pdf",
+          "page_number": 8
+        },
+        {
+          "document_id": "1cb8b0cf-01e8-41e8-bee5-fe74e92170f4",
+          "document_title": "06FPBasic.pdf",
+          "page_number": 4
+        }
+      ]
+    },
+    {
+      "id": "Q16",
+      "type": "in_corpus",
+      "question": "What are redundant attributes in the context of attribute subset selection?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "Redundant attributes are those that duplicate much—or even all—of the information contained in one or more other attributes. In other words, they provide overlapping or repeatable data rather than new, independent information, such as a product’s purchase price and the amount of sales tax paid, which convey essentially the same value [Source 1].",
+      "retrieved_sources": [
+        {
+          "document_id": "caa373d7-b0a6-4d92-b777-caebb6ccb618",
+          "document_title": "03Preprocessing.pdf",
+          "page_number": 32
+        },
+        {
+          "document_id": "caa373d7-b0a6-4d92-b777-caebb6ccb618",
+          "document_title": "03Preprocessing.pdf",
+          "page_number": 33
+        },
+        {
+          "document_id": "caa373d7-b0a6-4d92-b777-caebb6ccb618",
+          "document_title": "03Preprocessing.pdf",
+          "page_number": 13
+        },
+        {
+          "document_id": "d0c10fce-84d5-43c5-b9f7-5b0e368337ee",
+          "document_title": "001Lecture_1 Introduction.pdf",
+          "page_number": 34
+        },
+        {
+          "document_id": "2e9c3429-d6e5-4474-8d2b-e1e4245cd4c2",
+          "document_title": "02Data.pdf",
+          "page_number": 4
+        }
+      ]
+    },
+    {
+      "id": "Q17",
+      "type": "in_corpus",
+      "question": "What is the Apriori pruning principle?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The Apriori pruning principle states that **any itemset that is found to be infrequent implies that none of its supersets can be frequent, so those supersets should not be generated or tested**【Source 1】.",
+      "retrieved_sources": [
+        {
+          "document_id": "1cb8b0cf-01e8-41e8-bee5-fe74e92170f4",
+          "document_title": "06FPBasic.pdf",
+          "page_number": 12
+        },
+        {
+          "document_id": "1cb8b0cf-01e8-41e8-bee5-fe74e92170f4",
+          "document_title": "06FPBasic.pdf",
+          "page_number": 14
+        },
+        {
+          "document_id": "1cb8b0cf-01e8-41e8-bee5-fe74e92170f4",
+          "document_title": "06FPBasic.pdf",
+          "page_number": 16
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 10
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 12
+        }
+      ]
+    },
+    {
+      "id": "Q18",
+      "type": "in_corpus",
+      "question": "What must be specified before running K-means clustering?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "Before you run K‑means clustering you must specify the number of clusters \\(K\\) you want the algorithm to create【Source 1 — Page 11】.",
+      "retrieved_sources": [
+        {
+          "document_id": "ec141bd6-18fc-4f03-b064-f0fae07b5b24",
+          "document_title": "07Clustering.pdf",
+          "page_number": 11
+        },
+        {
+          "document_id": "ec141bd6-18fc-4f03-b064-f0fae07b5b24",
+          "document_title": "07Clustering.pdf",
+          "page_number": 12
+        },
+        {
+          "document_id": "ec141bd6-18fc-4f03-b064-f0fae07b5b24",
+          "document_title": "07Clustering.pdf",
+          "page_number": 10
+        },
+        {
+          "document_id": "2e9c3429-d6e5-4474-8d2b-e1e4245cd4c2",
+          "document_title": "02Data.pdf",
+          "page_number": 17
+        },
+        {
+          "document_id": "caa373d7-b0a6-4d92-b777-caebb6ccb618",
+          "document_title": "03Preprocessing.pdf",
+          "page_number": 55
+        }
+      ]
+    },
+    {
+      "id": "Q19",
+      "type": "in_corpus",
+      "question": "What is the key difference between supervised and unsupervised learning?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The essential distinction is that **supervised learning uses training data that include known class labels, whereas unsupervised learning works with data that have no predefined labels**. In supervised learning the model is trained to map inputs to the given output categories and then classifies new instances based on that labeled training set. In unsupervised learning the algorithm receives only the raw measurements and tries to uncover inherent structure—such as clusters—without any prior class information【Source 1】. This lack of supervision is why clustering is described as “unsupervised classification”【Source 2】.",
+      "retrieved_sources": [
+        {
+          "document_id": "a1769320-f5bf-4cc2-aa80-ce420ba351b2",
+          "document_title": "Ch8 classbasis ملخص.pdf",
+          "page_number": 1
+        },
+        {
+          "document_id": "ec141bd6-18fc-4f03-b064-f0fae07b5b24",
+          "document_title": "07Clustering.pdf",
+          "page_number": 3
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 4
+        },
+        {
+          "document_id": "d0c10fce-84d5-43c5-b9f7-5b0e368337ee",
+          "document_title": "001Lecture_1 Introduction.pdf",
+          "page_number": 8
+        },
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 8
+        }
+      ]
+    },
+    {
+      "id": "Q20",
+      "type": "in_corpus",
+      "question": "What are the main steps of the decision tree algorithm based on entropy and information gain?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The decision‑tree learning process that uses entropy and information‑gain proceeds as follows:\n\n1. **Compute the entropy of the target (class) variable.**  \n   This measures the impurity of the whole data set before any split.  \n   【Source 1】\n\n2. **For each candidate attribute, calculate its information gain.**  \n   Information gain is obtained by subtracting the conditional entropy \\(Entropy(T,X)\\) (the entropy of the target after splitting on attribute \\(X\\)) from the original target entropy \\(Entropy(T)\\).  \n   【Source 4】\n\n3. **Select the attribute with the highest information gain** and make it the current decision node (the root for the first level).  \n   The attribute that yields the greatest reduction in entropy is chosen to split the data.  \n   【Source 1】【Source 2】\n\n4. **Create leaf nodes for any attributes whose information gain is zero.**  \n   When an attribute does not reduce impurity, the branch ends in a leaf.  \n   【Source 1】\n\n5. **Repeat the process recursively on each resulting subset** (i.e., “more splitting”).  \n   For each child node, recompute entropy and information gain on the remaining attributes until stopping criteria are met (e.g., all gains are zero or a purity threshold is reached).  \n   【Source 1】\n\nThese steps together define the classic decision‑tree algorithm that builds a tree by repeatedly choosing the attribute that maximally reduces entropy, using information gain as the selection metric.",
+      "retrieved_sources": [
+        {
+          "document_id": "2ac0b354-ab1f-42d4-b9a9-b9d7f38f5313",
+          "document_title": "Sec 5 Decision teee (1).pdf",
+          "page_number": 11
+        },
+        {
+          "document_id": "2ac0b354-ab1f-42d4-b9a9-b9d7f38f5313",
+          "document_title": "Sec 5 Decision teee (1).pdf",
+          "page_number": 6
+        },
+        {
+          "document_id": "2ac0b354-ab1f-42d4-b9a9-b9d7f38f5313",
+          "document_title": "Sec 5 Decision teee (1).pdf",
+          "page_number": 7
+        },
+        {
+          "document_id": "2ac0b354-ab1f-42d4-b9a9-b9d7f38f5313",
+          "document_title": "Sec 5 Decision teee (1).pdf",
+          "page_number": 15
+        },
+        {
+          "document_id": "a1769320-f5bf-4cc2-aa80-ce420ba351b2",
+          "document_title": "Ch8 classbasis ملخص.pdf",
+          "page_number": 7
+        }
+      ]
+    },
+    {
+      "id": "Q21",
+      "type": "in_corpus",
+      "question": "What is the pixel intensity range for an 8-bit grayscale image?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The pixel intensity range for an 8‑bit grayscale image spans from **0** (black) to **255** (white)【Source 1】.",
+      "retrieved_sources": [
+        {
+          "document_id": "a1ba13b1-f3a3-492c-b504-fe9b36064355",
+          "document_title": "Hitogram.Team2.pdf",
+          "page_number": 4
+        },
+        {
+          "document_id": "a1ba13b1-f3a3-492c-b504-fe9b36064355",
+          "document_title": "Hitogram.Team2.pdf",
+          "page_number": 23
+        },
+        {
+          "document_id": "a1ba13b1-f3a3-492c-b504-fe9b36064355",
+          "document_title": "Hitogram.Team2.pdf",
+          "page_number": 34
+        },
+        {
+          "document_id": "a1ba13b1-f3a3-492c-b504-fe9b36064355",
+          "document_title": "Hitogram.Team2.pdf",
+          "page_number": 13
+        },
+        {
+          "document_id": "a1ba13b1-f3a3-492c-b504-fe9b36064355",
+          "document_title": "Hitogram.Team2.pdf",
+          "page_number": 6
+        }
+      ]
+    },
+    {
+      "id": "Q22",
+      "type": "in_corpus",
+      "question": "What is the function of kernels in a CNN?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "Kernels in a convolutional neural network act as small, trainable filters that scan (or “slide”) across the input data—such as an image—and perform an element‑wise multiplication followed by a summation (a dot‑product) at each position.  This operation extracts specific patterns from the input (e.g., edges, corners, textures) by producing a single activation value that reflects how strongly the local image patch matches the kernel’s learned pattern【Source 1】.  \n\nThe resulting activation values are stored in a feature (or activation) map, where each location corresponds to a particular kernel position on the input.  The magnitude of each value indicates the strength of the detected feature, allowing the network to highlight edges, textures, or other patterns the kernel is designed to capture【Source 2】.  \n\nThus, the primary function of kernels is to detect and encode useful visual features from the raw input, which are then passed to deeper layers for further abstraction.",
+      "retrieved_sources": [
+        {
+          "document_id": "d22a471b-1c49-487b-a896-ffe1a7a1f900",
+          "document_title": "lecture4_ComputerVision_CNN_1.pdf",
+          "page_number": 21
+        },
+        {
+          "document_id": "d22a471b-1c49-487b-a896-ffe1a7a1f900",
+          "document_title": "lecture4_ComputerVision_CNN_1.pdf",
+          "page_number": 28
+        },
+        {
+          "document_id": "d22a471b-1c49-487b-a896-ffe1a7a1f900",
+          "document_title": "lecture4_ComputerVision_CNN_1.pdf",
+          "page_number": 22
+        },
+        {
+          "document_id": "d22a471b-1c49-487b-a896-ffe1a7a1f900",
+          "document_title": "lecture4_ComputerVision_CNN_1.pdf",
+          "page_number": 27
+        },
+        {
+          "document_id": "d22a471b-1c49-487b-a896-ffe1a7a1f900",
+          "document_title": "lecture4_ComputerVision_CNN_1.pdf",
+          "page_number": 23
+        }
+      ]
+    },
+    {
+      "id": "Q23",
+      "type": "in_corpus",
+      "question": "What is the difference between Arabic Speech Recognition (ASR) and Text-to-Speech (TTS)?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "Arabic Speech Recognition (ASR) and Text‑to‑Speech (TTS) perform opposite transformations on the Arabic language.  \n\n* **ASR** takes spoken Arabic input and converts it into written text by applying machine‑learning and signal‑processing techniques [Source 1].  \n* **TTS** takes written Arabic text and generates natural‑sounding, human‑like speech using linguistic and acoustic models [Source 1].\n\nThus, ASR maps audio → text, while TTS maps text → audio.",
+      "retrieved_sources": [
+        {
+          "document_id": "e1eef6b6-46e3-4b40-801c-3412c0fe364e",
+          "document_title": "Arabization_Chapter 05.pptx",
+          "page_number": 2
+        },
+        {
+          "document_id": "e1eef6b6-46e3-4b40-801c-3412c0fe364e",
+          "document_title": "Arabization_Chapter 05.pptx",
+          "page_number": 1
+        },
+        {
+          "document_id": "e1eef6b6-46e3-4b40-801c-3412c0fe364e",
+          "document_title": "Arabization_Chapter 05.pptx",
+          "page_number": 16
+        },
+        {
+          "document_id": "e1eef6b6-46e3-4b40-801c-3412c0fe364e",
+          "document_title": "Arabization_Chapter 05.pptx",
+          "page_number": 23
+        },
+        {
+          "document_id": "04b9ee27-1a4f-4e28-b43e-33f19a342838",
+          "document_title": "lecture1_ComputerVision.pdf",
+          "page_number": 33
+        }
+      ]
+    },
+    {
+      "id": "Q24",
+      "type": "in_corpus",
+      "question": "In NRZ (Non-Return-to-Zero) line coding, what defines bit 1 and bit 0?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "In NRZ (Non‑Return‑to‑Zero) line coding, a **positive voltage level is used to represent a binary 1**, while **zero volts (no voltage) is used to represent a binary 0**【Source 1】.",
+      "retrieved_sources": [
+        {
+          "document_id": "581443a6-fad3-47ee-848b-1e0ff65324bd",
+          "document_title": "DC 5.pptx",
+          "page_number": 29
+        },
+        {
+          "document_id": "581443a6-fad3-47ee-848b-1e0ff65324bd",
+          "document_title": "DC 5.pptx",
+          "page_number": 32
+        },
+        {
+          "document_id": "581443a6-fad3-47ee-848b-1e0ff65324bd",
+          "document_title": "DC 5.pptx",
+          "page_number": 33
+        },
+        {
+          "document_id": "581443a6-fad3-47ee-848b-1e0ff65324bd",
+          "document_title": "DC 5.pptx",
+          "page_number": 31
+        },
+        {
+          "document_id": "581443a6-fad3-47ee-848b-1e0ff65324bd",
+          "document_title": "DC 5.pptx",
+          "page_number": 44
+        }
+      ]
+    },
+    {
+      "id": "Q25",
+      "type": "in_corpus",
+      "question": "What three parameters can represent a sine wave?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "A sine wave can be fully described by three parameters: **amplitude**, **frequency**, and **phase**【Source 1】【Source 2】.",
+      "retrieved_sources": [
+        {
+          "document_id": "c56de7fd-45f4-4a8e-8586-56a26b17f631",
+          "document_title": "DC 6.pptx",
+          "page_number": 6
+        },
+        {
+          "document_id": "c56de7fd-45f4-4a8e-8586-56a26b17f631",
+          "document_title": "DC 6.pptx",
+          "page_number": 14
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 33
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 43
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 44
+        }
+      ]
+    },
+    {
+      "id": "Q26",
+      "type": "in_corpus",
+      "question": "In Synchronous TDM with n connections and an input unit duration of T, what is the duration of each time slot?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "In Synchronous TDM, if there are n connections and the duration of an input unit is T, the frame is divided into n equal time slots, so each slot lasts  \n\n**\\( \\displaystyle \\frac{T}{n} \\)**  \n\n[Source 1]",
+      "retrieved_sources": [
+        {
+          "document_id": "750f3e8d-fa06-4aaf-b497-d5d584003b93",
+          "document_title": "DC 7.pptx",
+          "page_number": 42
+        },
+        {
+          "document_id": "750f3e8d-fa06-4aaf-b497-d5d584003b93",
+          "document_title": "DC 7.pptx",
+          "page_number": 45
+        },
+        {
+          "document_id": "750f3e8d-fa06-4aaf-b497-d5d584003b93",
+          "document_title": "DC 7.pptx",
+          "page_number": 40
+        },
+        {
+          "document_id": "750f3e8d-fa06-4aaf-b497-d5d584003b93",
+          "document_title": "DC 7.pptx",
+          "page_number": 39
+        },
+        {
+          "document_id": "750f3e8d-fa06-4aaf-b497-d5d584003b93",
+          "document_title": "DC 7.pptx",
+          "page_number": 43
+        }
+      ]
+    },
+    {
+      "id": "Q27",
+      "type": "in_corpus",
+      "question": "How many training and test images does the MNIST dataset contain?",
+      "retrieval_hit": true,
+      "citation_hit": true,
+      "refusal_correct": null,
+      "answer": "The MNIST dataset contains **60 000 training images** and **10 000 test images**【Source 1 — Page 5】.",
+      "retrieved_sources": [
+        {
+          "document_id": "4ecf149a-5ce8-4ae4-af4c-0301bf588aaf",
+          "document_title": "DeepLearningWithPython (1).pptx",
+          "page_number": 5
+        },
+        {
+          "document_id": "4ecf149a-5ce8-4ae4-af4c-0301bf588aaf",
+          "document_title": "DeepLearningWithPython (1).pptx",
+          "page_number": 6
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 30
+        },
+        {
+          "document_id": "4ecf149a-5ce8-4ae4-af4c-0301bf588aaf",
+          "document_title": "DeepLearningWithPython (1).pptx",
+          "page_number": 8
+        },
+        {
+          "document_id": "b9456cd6-0a9e-4455-bd42-18d5e8333de1",
+          "document_title": "WN-Lecture-6.pdf",
+          "page_number": 16
+        }
+      ]
+    },
+    {
+      "id": "A01",
+      "type": "adversarial",
+      "question": "What is the boiling point of water at sea level?",
+      "retrieval_hit": null,
+      "citation_hit": null,
+      "refusal_correct": false,
+      "answer": "The provided documents do not contain information about the boiling point of water at sea level.",
+      "retrieved_sources": [
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 35
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 28
+        },
+        {
+          "document_id": "2e9c3429-d6e5-4474-8d2b-e1e4245cd4c2",
+          "document_title": "02Data.pdf",
+          "page_number": 6
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 6
+        },
+        {
+          "document_id": "2e9c3429-d6e5-4474-8d2b-e1e4245cd4c2",
+          "document_title": "02Data.pdf",
+          "page_number": 32
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "type": "adversarial",
+      "question": "Who is the current president of Egypt?",
+      "retrieval_hit": null,
+      "citation_hit": null,
+      "refusal_correct": true,
+      "answer": "The information about the current president of Egypt is not available in the provided documents.",
+      "retrieved_sources": [
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 1
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 30
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 1
+        },
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 10
+        },
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 1
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "type": "adversarial",
+      "question": "What is the capital of France?",
+      "retrieval_hit": null,
+      "citation_hit": null,
+      "refusal_correct": true,
+      "answer": "The information is not available in the provided documents.",
+      "retrieved_sources": [
+        {
+          "document_id": "2ac0b354-ab1f-42d4-b9a9-b9d7f38f5313",
+          "document_title": "Sec 5 Decision teee (1).pdf",
+          "page_number": 23
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 10
+        },
+        {
+          "document_id": "581443a6-fad3-47ee-848b-1e0ff65324bd",
+          "document_title": "DC 5.pptx",
+          "page_number": 47
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 12
+        },
+        {
+          "document_id": "c56de7fd-45f4-4a8e-8586-56a26b17f631",
+          "document_title": "DC 6.pptx",
+          "page_number": 49
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "type": "adversarial",
+      "question": "How do you bake a chocolate cake from scratch?",
+      "retrieval_hit": null,
+      "citation_hit": null,
+      "refusal_correct": true,
+      "answer": "The information about how to bake a chocolate cake from scratch is not available in the provided documents.",
+      "retrieved_sources": [
+        {
+          "document_id": "ddab10d5-6146-476b-89a1-ef785db70d90",
+          "document_title": "lecture2_ComputerVision_Python.pdf",
+          "page_number": 46
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 19
+        },
+        {
+          "document_id": "ddab10d5-6146-476b-89a1-ef785db70d90",
+          "document_title": "lecture2_ComputerVision_Python.pdf",
+          "page_number": 47
+        },
+        {
+          "document_id": "d22a471b-1c49-487b-a896-ffe1a7a1f900",
+          "document_title": "lecture4_ComputerVision_CNN_1.pdf",
+          "page_number": 25
+        },
+        {
+          "document_id": "ddab10d5-6146-476b-89a1-ef785db70d90",
+          "document_title": "lecture2_ComputerVision_Python.pdf",
+          "page_number": 48
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "type": "adversarial",
+      "question": "What is the current price of Bitcoin?",
+      "retrieval_hit": null,
+      "citation_hit": null,
+      "refusal_correct": true,
+      "answer": "The information about the current price of Bitcoin is not available in the provided documents.",
+      "retrieved_sources": [
+        {
+          "document_id": "750f3e8d-fa06-4aaf-b497-d5d584003b93",
+          "document_title": "DC 7.pptx",
+          "page_number": 15
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 10
+        },
+        {
+          "document_id": "750f3e8d-fa06-4aaf-b497-d5d584003b93",
+          "document_title": "DC 7.pptx",
+          "page_number": 16
+        },
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 12
+        },
+        {
+          "document_id": "caa373d7-b0a6-4d92-b777-caebb6ccb618",
+          "document_title": "03Preprocessing.pdf",
+          "page_number": 54
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "type": "adversarial",
+      "question": "Summarize the plot of Romeo and Juliet.",
+      "retrieval_hit": null,
+      "citation_hit": null,
+      "refusal_correct": true,
+      "answer": "The information is not available in the provided documents.",
+      "retrieved_sources": [
+        {
+          "document_id": "2e9c3429-d6e5-4474-8d2b-e1e4245cd4c2",
+          "document_title": "02Data.pdf",
+          "page_number": 16
+        },
+        {
+          "document_id": "d0c10fce-84d5-43c5-b9f7-5b0e368337ee",
+          "document_title": "001Lecture_1 Introduction.pdf",
+          "page_number": 3
+        },
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 47
+        },
+        {
+          "document_id": "eea2a0f7-68ba-4dec-83cc-bc380e50acc6",
+          "document_title": "ds doc.docx",
+          "page_number": 1
+        },
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 40
+        }
+      ]
+    }
+  ]
+}

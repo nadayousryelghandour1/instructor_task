@@ -81,7 +81,7 @@ class DocumentChunkRepository:
             .filter(DocumentChunkModel.tenant_id == tenant_id)
             .all()
         )
-
+        
         return [
             DocumentChunk(
                 document_id=chunk.document_id,

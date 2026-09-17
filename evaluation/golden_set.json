@@ -1,0 +1,287 @@
+[
+  {
+    "id": "Q01",
+    "type": "in_corpus",
+    "question": "What processes are included in the transmitter (Tx) stage of a digital communication system?",
+    "expected_answer_summary": "The transmitter process includes signal formatting, sampling and quantization, source encoding, encryption, channel encoding, multiplexing, pulse shaping, modulation, amplification and filtering, and frequency translation.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-1.pdf", "pages": [4, 5]}
+    ]
+  },
+  {
+    "id": "Q02",
+    "type": "in_corpus",
+    "question": "What is a channel in a digital communication system?",
+    "expected_answer_summary": "A channel is the physical medium used to send a signal from the transmitter (Tx) to the receiver (Rx).",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-1.pdf", "pages": [6]}
+    ]
+  },
+  {
+    "id": "Q03",
+    "type": "in_corpus",
+    "question": "What is the difference between licensed and unlicensed frequency bands?",
+    "expected_answer_summary": "Licensed bands require operators to pay for a license (e.g. 800 MHz, 1.8 GHz, 2.1 GHz), while unlicensed bands (e.g. 900 MHz, 2.4 GHz, 5 GHz, 60 GHz ISM bands) can be used without a license as long as regulatory requirements like max transmit power are met.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-1.pdf", "pages": [9]}
+    ]
+  },
+  {
+    "id": "Q04",
+    "type": "in_corpus",
+    "question": "What is a decibel (dB) and what is it used for?",
+    "expected_answer_summary": "A decibel is a logarithmic unit used to express the ratio between two values (typically power or intensity), commonly used to measure sound levels, signal strength, and gain or loss in a system.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-2.pdf", "pages": [4]}
+    ]
+  },
+  {
+    "id": "Q05",
+    "type": "in_corpus",
+    "question": "How many bits per symbol does 16-QAM provide?",
+    "expected_answer_summary": "16-QAM provides 4 bits per symbol (3 amplitudes combined with 4 phase shifts, giving 16 combinations).",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-2.pdf", "pages": [29]}
+    ]
+  },
+  {
+    "id": "Q06",
+    "type": "in_corpus",
+    "question": "Give examples of directive antenna types.",
+    "expected_answer_summary": "Directive antennas include Array (Yagi), Helical, Reflector (Parabolic), Horn (Aperture), Cell site, and Microstrip antennas.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-3 (1).pdf", "pages": [21]}
+    ]
+  },
+  {
+    "id": "Q07",
+    "type": "in_corpus",
+    "question": "What assumption allows a wireless channel to be modelled as a linear time-invariant (LTI) system?",
+    "expected_answer_summary": "The LTI assumption holds when the channel remains constant long enough for estimation and compensation.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-4.pdf", "pages": [22]}
+    ]
+  },
+  {
+    "id": "Q08",
+    "type": "in_corpus",
+    "question": "What is coherence bandwidth?",
+    "expected_answer_summary": "Coherence bandwidth is the range of frequencies over which the channel response remains nearly constant.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-5 (1).pdf", "pages": [15]}
+    ]
+  },
+  {
+    "id": "Q09",
+    "type": "in_corpus",
+    "question": "What are the four antenna configurations related to diversity in wireless communication?",
+    "expected_answer_summary": "SISO (Single Input Single Output), SIMO (Single Input Multiple Output), MISO (Multiple Input Single Output), and MIMO (Multiple Input Multiple Output).",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-6.pdf", "pages": [3]}
+    ]
+  },
+  {
+    "id": "Q10",
+    "type": "in_corpus",
+    "question": "What problem does OFDM address compared to single carrier transmission?",
+    "expected_answer_summary": "In single carrier transmission, multipath causes multiple copies of the signal to arrive at different times, spreading the signal in the time domain; OFDM addresses this by spacing symbols to avoid interference from this spreading.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-7.pdf", "pages": [25]}
+    ]
+  },
+  {
+    "id": "Q11",
+    "type": "in_corpus",
+    "question": "What is the ISM band and give an example of its bandwidth.",
+    "expected_answer_summary": "ISM (Industrial, Scientific, and Medical) is the license-free spectrum for wireless LANs; bandwidth varies, e.g. the 6.765 MHz band has a 30 kHz bandwidth and the 5.725 GHz band has a 150 MHz bandwidth.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-8.pdf", "pages": [13]}
+    ]
+  },
+  {
+    "id": "Q12",
+    "type": "in_corpus",
+    "question": "What is a femtocell?",
+    "expected_answer_summary": "A femtocell is a small, low-power cellular base station, typically designed for use in a home or small business.",
+    "acceptable_sources": [
+      {"document_title": "WN-Lecture-9.pdf", "pages": [27]}
+    ]
+  },
+  {
+    "id": "Q13",
+    "type": "in_corpus",
+    "question": "What is a notable property of LSTM networks?",
+    "expected_answer_summary": "LSTM can learn very deep learning tasks requiring memories of events from thousands or millions of time steps ago, and it works even with long delays and mixed low/high frequency signal components.",
+    "acceptable_sources": [
+      {"document_title": "lecture1_ComputerVision.pdf", "pages": [22]}
+    ]
+  },
+  {
+    "id": "Q14",
+    "type": "in_corpus",
+    "question": "In OpenCV, what is the default color channel order when reading an image with imread()?",
+    "expected_answer_summary": "BGR (blue, green, red) order.",
+    "acceptable_sources": [
+      {"document_title": "lecture2_ComputerVision_Python.pdf", "pages": [15]}
+    ]
+  },
+  {
+    "id": "Q15",
+    "type": "in_corpus",
+    "question": "What are the two main categories of data mining pattern tasks?",
+    "expected_answer_summary": "Descriptive mining (characterizes properties of the data) and predictive mining (performs induction on current data to make predictions).",
+    "acceptable_sources": [
+      {"document_title": "001Lecture_1 Introduction.pdf", "pages": [24]}
+    ]
+  },
+  {
+    "id": "Q16",
+    "type": "in_corpus",
+    "question": "What are redundant attributes in the context of attribute subset selection?",
+    "expected_answer_summary": "Redundant attributes duplicate much or all of the information contained in one or more other attributes (e.g. purchase price and the sales tax paid on it).",
+    "acceptable_sources": [
+      {"document_title": "03Preprocessing.pdf", "pages": [32]}
+    ]
+  },
+  {
+    "id": "Q17",
+    "type": "in_corpus",
+    "question": "What is the Apriori pruning principle?",
+    "expected_answer_summary": "If any itemset is infrequent, its superset should not be generated or tested.",
+    "acceptable_sources": [
+      {"document_title": "06FPBasic.pdf", "pages": [12]}
+    ]
+  },
+  {
+    "id": "Q18",
+    "type": "in_corpus",
+    "question": "What must be specified before running K-means clustering?",
+    "expected_answer_summary": "The number of clusters, K, must be specified.",
+    "acceptable_sources": [
+      {"document_title": "07Clustering.pdf", "pages": [11]}
+    ]
+  },
+  {
+    "id": "Q19",
+    "type": "in_corpus",
+    "question": "What is the key difference between supervised and unsupervised learning?",
+    "expected_answer_summary": "In supervised learning (classification), training data is accompanied by labels indicating the class; in unsupervised learning (clustering), the class labels of the training data are unknown.",
+    "acceptable_sources": [
+      {"document_title": "Ch8 classbasis ملخص.pdf", "pages": [1]}
+    ]
+  },
+  {
+    "id": "Q20",
+    "type": "in_corpus",
+    "question": "What are the main steps of the decision tree algorithm based on entropy and information gain?",
+    "expected_answer_summary": "Calculate the entropy of the target, calculate the information gain of each (attribute, target) pair, select the attribute with the highest gain as the node, attributes with zero gain become leaves, and continue splitting.",
+    "acceptable_sources": [
+      {"document_title": "Sec 5 Decision teee (1).pdf", "pages": [11]}
+    ]
+  },
+  {
+    "id": "Q21",
+    "type": "in_corpus",
+    "question": "What is the pixel intensity range for an 8-bit grayscale image?",
+    "expected_answer_summary": "Each pixel value ranges from 0 (black) to 255 (white).",
+    "acceptable_sources": [
+      {"document_title": "Hitogram.Team2.pdf", "pages": [4]}
+    ]
+  },
+  {
+    "id": "Q22",
+    "type": "in_corpus",
+    "question": "What is the function of kernels in a CNN?",
+    "expected_answer_summary": "Kernels slide over the input data performing element-wise multiplication followed by summation, extracting specific features such as edges, corners, or textures depending on the kernel's values.",
+    "acceptable_sources": [
+      {"document_title": "lecture4_ComputerVision_CNN_1.pdf", "pages": [21]}
+    ]
+  },
+  {
+    "id": "Q23",
+    "type": "in_corpus",
+    "question": "What is the difference between Arabic Speech Recognition (ASR) and Text-to-Speech (TTS)?",
+    "expected_answer_summary": "ASR converts spoken Arabic into written text using machine learning and signal processing, while TTS converts written Arabic text into natural-sounding speech using linguistic and acoustic models.",
+    "acceptable_sources": [
+      {"document_title": "Arabization_Chapter 05.pptx", "pages": [2]}
+    ]
+  },
+  {
+    "id": "Q24",
+    "type": "in_corpus",
+    "question": "In NRZ (Non-Return-to-Zero) line coding, what defines bit 1 and bit 0?",
+    "expected_answer_summary": "Positive voltage defines bit 1 and zero voltage defines bit 0; it's called NRZ because the signal does not return to zero at the middle of the bit.",
+    "acceptable_sources": [
+      {"document_title": "DC 5.pptx", "pages": [29]}
+    ]
+  },
+  {
+    "id": "Q25",
+    "type": "in_corpus",
+    "question": "What three parameters can represent a sine wave?",
+    "expected_answer_summary": "Peak amplitude, frequency, and phase.",
+    "acceptable_sources": [
+      {"document_title": "DC 6.pptx", "pages": [6]}
+    ]
+  },
+  {
+    "id": "Q26",
+    "type": "in_corpus",
+    "question": "In Synchronous TDM with n connections and an input unit duration of T, what is the duration of each time slot?",
+    "expected_answer_summary": "Each slot's duration is T/n, and the duration of each frame is T.",
+    "acceptable_sources": [
+      {"document_title": "DC 7.pptx", "pages": [42]}
+    ]
+  },
+  {
+    "id": "Q27",
+    "type": "in_corpus",
+    "question": "How many training and test images does the MNIST dataset contain?",
+    "expected_answer_summary": "60,000 training images and 10,000 test images, classified into 10 categories (digits 0-9).",
+    "acceptable_sources": [
+      {"document_title": "DeepLearningWithPython (1).pptx", "pages": [5]}
+    ]
+  },
+  {
+    "id": "A01",
+    "type": "adversarial",
+    "question": "What is the boiling point of water at sea level?",
+    "expected_answer_summary": "REFUSAL — not covered by the corpus (general chemistry/physics fact unrelated to any uploaded document).",
+    "acceptable_sources": []
+  },
+  {
+    "id": "A02",
+    "type": "adversarial",
+    "question": "Who is the current president of Egypt?",
+    "expected_answer_summary": "REFUSAL — not covered by the corpus (current-events/political fact).",
+    "acceptable_sources": []
+  },
+  {
+    "id": "A03",
+    "type": "adversarial",
+    "question": "What is the capital of France?",
+    "expected_answer_summary": "REFUSAL — not covered by the corpus (general geography fact).",
+    "acceptable_sources": []
+  },
+  {
+    "id": "A04",
+    "type": "adversarial",
+    "question": "How do you bake a chocolate cake from scratch?",
+    "expected_answer_summary": "REFUSAL — not covered by the corpus (unrelated cooking topic).",
+    "acceptable_sources": []
+  },
+  {
+    "id": "A05",
+    "type": "adversarial",
+    "question": "What is the current price of Bitcoin?",
+    "expected_answer_summary": "REFUSAL — not covered by the corpus (live financial data, and outside the document set entirely).",
+    "acceptable_sources": []
+  },
+  {
+    "id": "A06",
+    "type": "adversarial",
+    "question": "Summarize the plot of Romeo and Juliet.",
+    "expected_answer_summary": "REFUSAL — not covered by the corpus (literature/fiction, unrelated to the technical lecture corpus).",
+    "acceptable_sources": []
+  }
+]
