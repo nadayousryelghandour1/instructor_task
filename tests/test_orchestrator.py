@@ -1,3 +1,5 @@
+import time
+
 from application.agents.orchestrator import CurriculumWorkflowOrchestrator
 from application.agents.standards_mapper import StandardsMapperOutput, StandardMapping
 from application.agents.curriculum_designer import (
@@ -159,3 +161,33 @@ def test_step_failure_marks_run_failed_and_stops_pipeline():
     # Retried MAX_RETRIES_PER_STEP times, all failed.
     assert len(result.steps) == CurriculumWorkflowOrchestrator.MAX_RETRIES_PER_STEP
     assert all(step.status == "failed" for step in result.steps)
+
+
+def test_step_timeout_marks_run_failed_and_retries():
+    class SlowMapper:
+        def run(self, tenant_id, input_data):
+            time.sleep(0.2)
+            return None
+
+    run_repo = InMemoryAgentRunRepository()
+    item_repo = InMemoryAssessmentItemRepository()
+
+    orchestrator = CurriculumWorkflowOrchestrator(
+        standards_mapper=SlowMapper(),
+        curriculum_designer=FakeCurriculumDesigner(None),
+        item_generator=FakeItemGenerator(None),
+        agent_run_repository=run_repo,
+        assessment_item_repository=item_repo,
+    )
+
+    orchestrator.STEP_TIMEOUT_SECONDS = 0.05
+
+    result = orchestrator.run(
+        tenant_id="tenant-1",
+        learning_goal="goal",
+    )
+
+    assert result.status == "failed"
+    assert len(result.steps) == 2
+    assert all(step.status == "failed" for step in result.steps)
+    assert all("exceeded 0.05s" in step.error for step in result.steps)

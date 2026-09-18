@@ -1,0 +1,37 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# --- Virtual environments ---
+venv/
+.venv/
+env/
+
+# --- Secrets & local config ---
+.env
+.env.local
+
+# --- Local databases ---
+*.db
+*.sqlite
+*.sqlite3
+
+# --- Runtime artifacts ---
+uploads/
+account.txt
+
+# --- Evaluation generated files ---
+evaluation/corpus.json
+evaluation/golden_set.backup.json
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Keep the seed corpus tracked, but not its extracted artifacts ---
+corpus/**/*.tmp

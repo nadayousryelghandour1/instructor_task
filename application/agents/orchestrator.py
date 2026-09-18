@@ -1,4 +1,5 @@
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from datetime import datetime, timezone
 
 from application.agents.standards_mapper import (
@@ -24,19 +25,19 @@ class CurriculumWorkflowOrchestrator:
         Standards Mapper -> Curriculum Designer -> Item Generator -> HUMAN APPROVAL
 
     Each step runs in sequence. A step that raises is retried with a linear
-    backoff up to MAX_RETRIES_PER_STEP; a step that runs past
-    STEP_TIMEOUT_SECONDS is treated as failed. If a step exhausts its
-    retries, the orchestrator does NOT continue the pipeline with guessed
-    input for the next agent - it stops, persists whatever ran so far for
-    inspection, and marks the run 'failed' (graceful degradation, principle
-    #1 - grounded, never guessing).
+    backoff up to MAX_RETRIES_PER_STEP; a step that exceeds
+    STEP_TIMEOUT_SECONDS is treated as failed.
+
+    If a step exhausts its retries, the orchestrator does NOT continue the
+    pipeline with guessed input for the next agent. It stops, persists
+    whatever ran so far for inspection, and marks the run 'failed'.
 
     No item this orchestrator produces is ever returned to the caller as
     final: every generated item is persisted with status 'pending_approval'
     and requires a Lead Instructor to approve, reject, or edit-and-approve it
-    before it is usable (principle #2 - the human holds the pen). Every step
-    is recorded on the AgentRun for later inspection by run ID (principle #3
-    - everything is observable).
+    before it is usable.
+
+    Every step is recorded on the AgentRun for later inspection.
     """
 
     MAX_RETRIES_PER_STEP = 2
@@ -70,7 +71,9 @@ class CurriculumWorkflowOrchestrator:
             input_summary=learning_goal,
             fn=lambda: self.standards_mapper.run(
                 tenant_id=tenant_id,
-                input_data=StandardsMapperInput(learning_goal=learning_goal),
+                input_data=StandardsMapperInput(
+                    learning_goal=learning_goal
+                ),
             ),
         )
 
@@ -159,25 +162,26 @@ class CurriculumWorkflowOrchestrator:
         fn,
     ):
         """
-        Runs a single agent step with retry-with-backoff and a soft
-        wall-clock timeout. Returns the step's output, or None once retries
-        are exhausted - the caller decides how to degrade gracefully.
+        Runs a single agent step with retry-with-backoff and per-step timeout.
+
+        Returns the step's output if successful.
+        Returns None once all retries are exhausted.
         """
+
         last_error = None
 
         for attempt in range(1, self.MAX_RETRIES_PER_STEP + 1):
             started_at = datetime.now(timezone.utc).isoformat()
-            start = time.monotonic()
+
+            executor = ThreadPoolExecutor(max_workers=1)
+            future = executor.submit(fn)
 
             try:
-                output = fn()
-                elapsed = time.monotonic() - start
+                output = future.result(
+                    timeout=self.STEP_TIMEOUT_SECONDS
+                )
 
-                if elapsed > self.STEP_TIMEOUT_SECONDS:
-                    raise TimeoutError(
-                        f"{agent_name} exceeded {self.STEP_TIMEOUT_SECONDS}s "
-                        f"({elapsed:.1f}s)"
-                    )
+                executor.shutdown(wait=True)
 
                 agent_run.steps.append(
                     AgentStep(
@@ -186,27 +190,54 @@ class CurriculumWorkflowOrchestrator:
                         input_summary=input_summary,
                         output_summary=self._summarize(output),
                         started_at=started_at,
-                        finished_at=datetime.now(timezone.utc).isoformat(),
+                        finished_at=datetime.now(
+                            timezone.utc
+                        ).isoformat(),
                     )
                 )
+
                 return output
 
-            except Exception as exc:
-                last_error = str(exc)
-                agent_run.steps.append(
-                    AgentStep(
-                        agent_name=agent_name,
-                        status="failed",
-                        input_summary=input_summary,
-                        output_summary="",
-                        started_at=started_at,
-                        finished_at=datetime.now(timezone.utc).isoformat(),
-                        error=f"attempt {attempt}/{self.MAX_RETRIES_PER_STEP}: {last_error}",
-                    )
+            except FutureTimeoutError:
+                future.cancel()
+                executor.shutdown(
+                    wait=False,
+                    cancel_futures=True,
                 )
 
-                if attempt < self.MAX_RETRIES_PER_STEP:
-                    time.sleep(0.5 * attempt)  # linear backoff
+                last_error = (
+                    f"{agent_name} exceeded "
+                    f"{self.STEP_TIMEOUT_SECONDS}s"
+                )
+
+            except Exception as exc:
+                executor.shutdown(
+                    wait=False,
+                    cancel_futures=True,
+                )
+
+                last_error = str(exc)
+
+            agent_run.steps.append(
+                AgentStep(
+                    agent_name=agent_name,
+                    status="failed",
+                    input_summary=input_summary,
+                    output_summary="",
+                    started_at=started_at,
+                    finished_at=datetime.now(
+                        timezone.utc
+                    ).isoformat(),
+                    error=(
+                        f"attempt {attempt}/"
+                        f"{self.MAX_RETRIES_PER_STEP}: "
+                        f"{last_error}"
+                    ),
+                )
+            )
+
+            if attempt < self.MAX_RETRIES_PER_STEP:
+                time.sleep(0.5 * attempt)
 
         return None
 
@@ -214,8 +245,13 @@ class CurriculumWorkflowOrchestrator:
     def _summarize(output) -> str:
         if hasattr(output, "mappings"):
             return f"{len(output.mappings)} standard mapping(s)"
+
         if hasattr(output, "modules"):
             return f"{len(output.modules)} module(s)"
+
         if hasattr(output, "items"):
             return f"{len(output.items)} item(s)"
+
         return str(output)[:200]
+
+
