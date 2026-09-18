@@ -37,10 +37,18 @@ class DocumentRepository:
             status=document_model.status
         )
         
-    def update_status(self, document_id: str, status: str) -> None:
+    def update_status(
+    self,
+    document_id: str,
+    tenant_id: str,
+    status: str,
+    ) -> None:
         document_model = (
         self.session.query(DocumentModel)
-        .filter(DocumentModel.id == document_id)
+        .filter(
+            DocumentModel.id == document_id,
+            DocumentModel.tenant_id == tenant_id,
+        )
         .first()
     )
         if document_model is not None:

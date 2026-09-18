@@ -36,8 +36,8 @@ class ProcessDocumentUseCase:
 
             self.chunk_repository.add_many(chunks)
 
-            self.document_repository.update_status(document_id, "processed")
+            self.document_repository.update_status(document_id, tenant_id,"processed",)
 
         except Exception:
-            self.document_repository.update_status(document_id, "failed")
+            self.document_repository.update_status(document_id, tenant_id, "failed",)
             raise
