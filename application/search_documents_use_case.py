@@ -25,18 +25,11 @@ class SearchDocumentsUseCase:
         all_chunks = self.dochunk_chunk_repository.get_chunk_by_tenant_id(tenant_id)
 
         for chunk in all_chunks:
-            if chunk.page_number == 17:
-                score = cosine_similarity(
-                    query_embedding,
-                    chunk.embedding,
-                )
+            score = cosine_similarity(
+                query_embedding,
+                chunk.embedding,
+            )
 
-        print(
-            "PAGE 17 DIRECT SCORE:",
-            score,
-            "chunk_id=",
-            chunk.chunk_id,
-        )
         print("DENSE RESULTS")
         for rank, (score, chunk) in enumerate(dense_results, start=1):
             print(

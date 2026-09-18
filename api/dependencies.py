@@ -2,6 +2,13 @@ from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer
 
+from application.agents.standards_mapper import StandardsMapperAgent
+from application.agents.curriculum_designer import CurriculumDesignerAgent
+from application.agents.item_generator import ItemGeneratorAgent
+from application.agents.orchestrator import CurriculumWorkflowOrchestrator
+from application.approve_item_use_case import ApproveAssessmentItemUseCase
+from infrastructure.agent_run_repository import AgentRunRepository
+from infrastructure.assessment_item_repository import AssessmentItemRepository
 from application.login_use_case import LoginUseCase
 from application.register_user_use_case import RegisterUserUseCase
 from infrastructure.database import SessionLocal
@@ -151,4 +158,88 @@ def get_answer_question_use_case(
         prompt_builder=prompt_builder,
         llm_service=llm_service,
         document_repository=document_repository,
+    )
+    
+
+def get_standards_mapper_agent(
+    search_documents: SearchDocumentsUseCase = Depends(
+        get_search_documents_use_case
+    ),
+):
+    llm_service = LLMService()
+
+    return StandardsMapperAgent(
+        search_documents=search_documents,
+        llm_service=llm_service,
+    )
+
+
+def get_curriculum_designer_agent(
+    search_documents: SearchDocumentsUseCase = Depends(
+        get_search_documents_use_case
+    ),
+):
+    llm_service = LLMService()
+
+    return CurriculumDesignerAgent(
+        search_documents=search_documents,
+        llm_service=llm_service,
+    )
+
+
+def get_item_generator_agent():
+    llm_service = LLMService()
+
+    return ItemGeneratorAgent(llm_service=llm_service)
+
+
+def get_agent_run_repository(
+    session: Session = Depends(get_session),
+):
+    return AgentRunRepository(session)
+
+
+def get_assessment_item_repository(
+    session: Session = Depends(get_session),
+):
+    return AssessmentItemRepository(session)
+
+
+def get_orchestrator(
+    standards_mapper: StandardsMapperAgent = Depends(
+        get_standards_mapper_agent
+    ),
+    curriculum_designer: CurriculumDesignerAgent = Depends(
+        get_curriculum_designer_agent
+    ),
+    item_generator: ItemGeneratorAgent = Depends(
+        get_item_generator_agent
+    ),
+    agent_run_repository: AgentRunRepository = Depends(
+        get_agent_run_repository
+    ),
+    assessment_item_repository: AssessmentItemRepository = Depends(
+        get_assessment_item_repository
+    ),
+):
+    return CurriculumWorkflowOrchestrator(
+        standards_mapper=standards_mapper,
+        curriculum_designer=curriculum_designer,
+        item_generator=item_generator,
+        agent_run_repository=agent_run_repository,
+        assessment_item_repository=assessment_item_repository,
+    )
+
+
+def get_approve_item_use_case(
+    assessment_item_repository: AssessmentItemRepository = Depends(
+        get_assessment_item_repository
+    ),
+    agent_run_repository: AgentRunRepository = Depends(
+        get_agent_run_repository
+    ),
+):
+    return ApproveAssessmentItemUseCase(
+        assessment_item_repository=assessment_item_repository,
+        agent_run_repository=agent_run_repository,
     )
