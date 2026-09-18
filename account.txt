@@ -1,5 +1,0 @@
-{
-  "message": "Tenant and admin created successfully",
-  "tenant_id": "1085f5c2-1ed6-4f0c-9bdf-99e0f1b29932",
-  "admin_id": "effb2c97-339b-4dc1-bc92-8f3966c6db6d"
-}
