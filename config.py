@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    similarity_threshold: float = 0.03
+    similarity_threshold: float = 0.015
     openai_api_key: str
     groq_api_key: str
 

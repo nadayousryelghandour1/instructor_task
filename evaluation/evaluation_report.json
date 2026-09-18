@@ -1,0 +1,510 @@
+{
+  "summary": {
+    "total_questions": 33,
+    "adversarial_questions": 6,
+    "answerable_questions": 27,
+    "retrieval_hit_rate": 0.8148148148148148,
+    "groundedness_rate": 0.9565217391304348,
+    "refusal_correctness_rate": 1.0,
+    "false_refusal_rate_on_answerable": 0.14814814814814814
+  },
+  "results": [
+    {
+      "id": "Q01",
+      "question": "What processes are included in the transmitter (Tx) stage of a digital communication system?",
+      "adversarial": false,
+      "answer": "The transmitter (Tx) stage of a digital‑communication system carries out a series of signal‑processing steps that prepare the information for the physical channel:\n\n1. **Conversion of the base‑band (low‑pass) signal to a new waveform** – the Tx changes the original signal into a form that can be sent over the particular channel [Source 1].\n\n2. **Frequency translation (up‑conversion)** – the signal’s frequency band is shifted to a higher‑frequency band that matches the channel’s pass‑band [Source 1].\n\n3. **Amplification and filtering** – after frequency translation the signal is amplified to the required power level and filtered to remove unwanted spectral components [Source 2].\n\n4. **Modulation** – the processed signal is modulated onto a carrier (e.g., using AM, FM, QAM, etc.) so that it can be radiated or transmitted through the medium [Source 3].\n\nThese operations together constitute the transmitter’s processing chain before the signal is sent through the channel.",
+      "sources": [
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 21
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q02",
+      "question": "What is a channel in a digital communication system?",
+      "adversarial": false,
+      "answer": "A **channel** in a digital communication system is the physical medium through which a transmitted signal travels from the transmitter (Tx) to the receiver (Rx). It can be a guided medium such as a copper wire, fiber‑optic cable, or Ethernet LAN cable, or an unguided medium such as the air‑space and any obstacles (walls, buildings, mountains, etc.) that the signal must propagate through in wireless systems【Source 3】. In all cases, the channel is the conduit that carries the signal, and its characteristics (e.g., noise, path loss, multipath) affect how the information is received【Source 1】【Source 5】.",
+      "sources": [
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 6
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q03",
+      "question": "What is the difference between licensed and unlicensed frequency bands?",
+      "adversarial": false,
+      "answer": "Licensed frequency bands are portions of the spectrum that an operator must obtain through a formal licensing process, typically by paying a fee to the regulator. Only the license‑holder is allowed to transmit in those bands, which are therefore protected from interference by other users. Examples of licensed bands include the 800 MHz, 1.8 GHz and 2.1 GHz allocations【Source 1】.  \n\nUnlicensed frequency bands, by contrast, can be used by anyone without obtaining a specific license, provided that the user complies with the regulatory limits that apply to those bands (e.g., maximum transmit power, spectral mask, duty‑cycle, maximum transmit time, etc.). Because they are open to all compliant devices, they are more susceptible to interference from other users. Typical unlicensed bands are the ISM (Industrial, Scientific and Medical) allocations such as 900 MHz, 2.4 GHz, 5 GHz and 60 GHz, and the exact availability varies by country【Source 1】【Source 3】.  \n\nIn short, the key differences are:  \n\n* **License requirement** – Licensed bands need a paid license; unlicensed bands do not.  \n* **Regulatory constraints** – Unlicensed use is allowed only if specific technical limits are met, whereas licensed users have exclusive rights within the band.  \n* **Examples** – Licensed: 800 MHz, 1.8 GHz, 2.1 GHz; Unlicensed: 900 MHz, 2.4 GHz, 5 GHz, 60 GHz ISM bands.  \n\nThese distinctions also mean that licensed bands are generally used for commercial cellular services, while unlicensed bands support technologies such as Wi‑Fi, Bluetooth, ZigBee, and other short‑range or low‑power applications.【Source 1】【Source 3】",
+      "sources": [
+        {
+          "document_id": "f8cd3e77-056d-4312-ac80-afe1252e7843",
+          "document_title": "WN-Lecture-8.pdf",
+          "page_number": 13
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q04",
+      "question": "What is a decibel (dB) and what is it used for?",
+      "adversarial": false,
+      "answer": "A decibel (dB) is a logarithmic unit that expresses the ratio between two values—most often power or intensity levels【Source 1】. Because it uses a logarithmic scale, it can represent very large or very small ratios in a compact form.  \n\nDecibels are widely used in many technical fields, such as acoustics, electronics, and communications, to quantify things like sound pressure levels, signal strength, and the gain or loss of a system【Source 1】. In practice, the dB value is calculated from the ratio of powers ( dB = 10 log₁₀(P₂/P₁) ) or from the ratio of voltages/currents ( dB = 20 log₁₀(V₂/V₁) )【Source 1】.",
+      "sources": [
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 14
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q05",
+      "question": "How many bits per symbol does 16-QAM provide?",
+      "adversarial": false,
+      "answer": "16‑QAM conveys **4 bits per symbol**【Source 1 — Page 29】.",
+      "sources": [
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 15
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": false
+    },
+    {
+      "id": "Q06",
+      "question": "Give examples of directive antenna types.",
+      "adversarial": false,
+      "answer": "Examples of directive antenna types include:\n\n- **Array (Yagi)** antennas  \n- **Helical** antennas  \n- **Reflector (Parabolic)** antennas  \n- **Horn (Aperture)** antennas  \n- **Cell‑site** antennas  \n- **Microstrip** antennas  \n\nThese are listed under the “Directive antenna” category in the provided document [Source 1].",
+      "sources": [
+        {
+          "document_id": "b7fe11d7-db0b-4a1d-88ca-32af302e3775",
+          "document_title": "WN-Lecture-3 (1).pdf",
+          "page_number": 28
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q07",
+      "question": "What assumption allows a wireless channel to be modelled as a linear time-invariant (LTI) system?",
+      "adversarial": false,
+      "answer": "The channel can be treated as an LTI system by assuming that its characteristics do not change appreciably during the time interval over which the signal is transmitted and processed – i.e., the channel remains essentially constant (time‑invariant) long enough for it to be estimated and compensated [Source 1]. This “time‑invariance” assumption is often justified by neglecting channel variation over short bursts that are shorter than the channel’s coherence time [Source 4].",
+      "sources": [
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 9
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q08",
+      "question": "What is coherence bandwidth?",
+      "adversarial": false,
+      "answer": "Coherence bandwidth, \\(B_c\\), is the range of frequencies over which the wireless channel’s response stays essentially the same – i.e., the channel gain (or impulse‑response coefficients) is nearly constant across that frequency interval【Source 1】. It therefore quantifies how much of the signal spectrum experiences correlated fading; when a signal’s bandwidth \\(B\\) exceeds \\(B_c\\) the different frequency components see different fading (frequency‑selective fading)【Source 5】.",
+      "sources": [
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 7
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q09",
+      "question": "What are the four antenna configurations related to diversity in wireless communication?",
+      "adversarial": false,
+      "answer": "The provided documents do not list four specific antenna configurations associated with diversity in wireless communication. The available excerpts mention only space diversity (using multiple antennas spaced apart) and give a general example of combining signals from two antennas, but they do not enumerate four distinct antenna configurations. Therefore, the requested information is not available in the provided documents.",
+      "sources": [
+        {
+          "document_id": "2c7b77d8-d129-49ec-867b-6bc5c29ae411",
+          "document_title": "WN-Lecture-4.pdf",
+          "page_number": 12
+        }
+      ],
+      "refused": true,
+      "wrongly_refused": true,
+      "retrieval_hit": false
+    },
+    {
+      "id": "Q10",
+      "question": "What problem does OFDM address compared to single carrier transmission?",
+      "adversarial": false,
+      "answer": "OFDM is used to eliminate the **inter‑symbol interference (ISI)** that plagues single‑carrier transmission in wide‑band, multipath channels. In a single‑carrier system the reflected copies of a signal arrive at different times, causing the symbols to spread in the time domain; when symbols are not spaced far enough this spreading creates ISI, making it hard for the receiver to distinguish individual symbols and leading to errors【Source 1】.  \n\nBy splitting the wide frequency band into many narrow subcarriers (i.e., using frequency‑division multiplexing), OFDM transmits data on each subcarrier separately, which mitigates the ISI problem while keeping the overall data rate unchanged【Source 5】【Source 2】.",
+      "sources": [
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 27
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q11",
+      "question": "What is the ISM band and give an example of its bandwidth.",
+      "adversarial": false,
+      "answer": "I couldn't find enough information in the provided documents to answer this question.",
+      "sources": [],
+      "refused": true,
+      "wrongly_refused": true,
+      "retrieval_hit": false
+    },
+    {
+      "id": "Q12",
+      "question": "What is a femtocell?",
+      "adversarial": false,
+      "answer": "I couldn't find enough information in the provided documents to answer this question.",
+      "sources": [],
+      "refused": true,
+      "wrongly_refused": true,
+      "retrieval_hit": false
+    },
+    {
+      "id": "Q13",
+      "question": "What is a notable property of LSTM networks?",
+      "adversarial": false,
+      "answer": "I couldn't find enough information in the provided documents to answer this question.",
+      "sources": [],
+      "refused": true,
+      "wrongly_refused": true,
+      "retrieval_hit": false
+    },
+    {
+      "id": "Q14",
+      "question": "In OpenCV, what is the default color channel order when reading an image with imread()?",
+      "adversarial": false,
+      "answer": "When you load an image with OpenCV’s `cv2.imread()` the pixel data is stored in **BGR order** (blue, green, red) by default【Source 1】. This is why displaying the same array with libraries that expect RGB (e.g., matplotlib) can produce a bluish‑tinted image【Source 2】.",
+      "sources": [
+        {
+          "document_id": "a1ba13b1-f3a3-492c-b504-fe9b36064355",
+          "document_title": "Hitogram.Team2.pdf",
+          "page_number": 6
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q15",
+      "question": "What are the two main categories of data mining pattern tasks?",
+      "adversarial": false,
+      "answer": "The two main categories of data‑mining pattern tasks are **descriptive mining** and **predictive mining**【Source 1】.",
+      "sources": [
+        {
+          "document_id": "1cb8b0cf-01e8-41e8-bee5-fe74e92170f4",
+          "document_title": "06FPBasic.pdf",
+          "page_number": 4
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q16",
+      "question": "What are redundant attributes in the context of attribute subset selection?",
+      "adversarial": false,
+      "answer": "Redundant attributes are features that “duplicate much or all of the information contained in one or more other attributes.” In other words, they convey essentially the same information as another attribute (or set of attributes), so keeping both does not add new knowledge to the model. An example is the purchase price of a product and the amount of sales tax paid, where knowing one essentially determines the other【Source 1 — Page 32】. Redundant attributes can often be identified through correlation or covariance analysis during data integration【Source 3 — Page 13】.",
+      "sources": [
+        {
+          "document_id": "2e9c3429-d6e5-4474-8d2b-e1e4245cd4c2",
+          "document_title": "02Data.pdf",
+          "page_number": 4
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q17",
+      "question": "What is the Apriori pruning principle?",
+      "adversarial": false,
+      "answer": "The Apriori pruning principle states that **any itemset that is found to be infrequent can be discarded, and none of its supersets should be generated or tested** because they cannot be frequent either【Source 1】.",
+      "sources": [
+        {
+          "document_id": "24d47cb0-afac-4eb1-b052-ba36413ad647",
+          "document_title": "WN-Lecture-2.pdf",
+          "page_number": 12
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q18",
+      "question": "What must be specified before running K-means clustering?",
+      "adversarial": false,
+      "answer": "Before you can run K‑means clustering you must specify the **number of clusters (K)** that the algorithm should create【Source 1 — Page 11】.",
+      "sources": [
+        {
+          "document_id": "caa373d7-b0a6-4d92-b777-caebb6ccb618",
+          "document_title": "03Preprocessing.pdf",
+          "page_number": 55
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q19",
+      "question": "What is the key difference between supervised and unsupervised learning?",
+      "adversarial": false,
+      "answer": "The essential distinction is that **supervised learning uses training data that already have known class labels**, allowing the model to learn a mapping from inputs to those labels and to classify new instances accordingly. In contrast, **unsupervised learning works with data that have no predefined labels**; its goal is to discover inherent structure such as groups or clusters within the data. [Source 1] Additionally, clustering—an unsupervised technique—groups similar objects together without any prior class information. [Source 2]",
+      "sources": [
+        {
+          "document_id": "1326c740-22a8-4a98-8b7b-c5f1fb9a4fbb",
+          "document_title": "WN-Lecture-5 (1).pdf",
+          "page_number": 8
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q20",
+      "question": "What are the main steps of the decision tree algorithm based on entropy and information gain?",
+      "adversarial": false,
+      "answer": "The decision‑tree learning process that uses entropy and information‑gain proceeds as follows:\n\n1. **Compute the entropy of the target (class) variable.**  \n   This gives the impurity of the whole data set before any split.【Source 1】\n\n2. **For each candidate attribute, compute its information‑gain.**  \n   The gain is obtained by subtracting the conditional entropy of the target given the attribute from the original target entropy:  \n   \\[\n   IG = Entropy(T) - Entropy(T|X)\n   \\]  \n   (or Entropy(T) – Entropy(T, X) as written in the notes).【Source 4】\n\n3. **Select the attribute with the highest information‑gain.**  \n   That attribute becomes the decision node (or root for the first split).【Source 1】【Source 2】\n\n4. **Create leaf nodes for any attribute whose gain is zero.**  \n   When an attribute provides no reduction in entropy, it is treated as a leaf.【Source 1】\n\n5. **Recursively repeat the process on each resulting subset.**  \n   For each child node, recompute entropy and information‑gain on the remaining attributes, choose the best split, and continue until a stopping condition is met (e.g., all gains are zero or a predefined depth).【Source 1】\n\nThese steps together define the standard entropy‑based decision‑tree algorithm that grows a tree by repeatedly choosing the attribute that most reduces uncertainty about the class label.",
+      "sources": [
+        {
+          "document_id": "a1769320-f5bf-4cc2-aa80-ce420ba351b2",
+          "document_title": "Ch8 classbasis ملخص.pdf",
+          "page_number": 7
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q21",
+      "question": "What is the pixel intensity range for an 8-bit grayscale image?",
+      "adversarial": false,
+      "answer": "The pixel intensity values in an 8‑bit grayscale image range from **0 (black) up to 255 (white)**【Source 1 — Page 4】.",
+      "sources": [
+        {
+          "document_id": "a1ba13b1-f3a3-492c-b504-fe9b36064355",
+          "document_title": "Hitogram.Team2.pdf",
+          "page_number": 6
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q22",
+      "question": "What is the function of kernels in a CNN?",
+      "adversarial": false,
+      "answer": "Kernels are the small learnable filters that move (“slide”) across the input data (e.g., an image) and perform an element‑wise multiplication followed by a summation (a dot‑product) at each position. This operation produces a single output value that is stored in a feature map, and the value reflects how strongly the local patch of the input matches the pattern encoded in the kernel. By detecting specific patterns—such as edges, corners, textures, or other visual cues—kernels extract useful features from the raw input that the network can later combine to recognize higher‑level structures【Source 1】.",
+      "sources": [
+        {
+          "document_id": "d22a471b-1c49-487b-a896-ffe1a7a1f900",
+          "document_title": "lecture4_ComputerVision_CNN_1.pdf",
+          "page_number": 23
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q23",
+      "question": "What is the difference between Arabic Speech Recognition (ASR) and Text-to-Speech (TTS)?",
+      "adversarial": false,
+      "answer": "Arabic Speech Recognition (ASR) and Text‑to‑Speech (TTS) are opposite processes for handling spoken Arabic:\n\n* **ASR** takes spoken Arabic audio as input and converts it into written text. It relies on machine‑learning and signal‑processing techniques to recognize the acoustic signal and produce a textual transcription [Source 1].\n\n* **TTS** takes written Arabic text as input and generates natural‑sounding speech output. It uses linguistic and acoustic models to synthesize a human‑like voice that reads the text aloud [Source 1].\n\nThus, ASR transforms **speech → text**, while TTS transforms **text → speech**.",
+      "sources": [
+        {
+          "document_id": "04b9ee27-1a4f-4e28-b43e-33f19a342838",
+          "document_title": "lecture1_ComputerVision.pdf",
+          "page_number": 33
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q24",
+      "question": "In NRZ (Non-Return-to-Zero) line coding, what defines bit 1 and bit 0?",
+      "adversarial": false,
+      "answer": "In an NRZ (Non‑Return‑to‑Zero) unipolar line‑coding scheme, a **positive voltage level represents a binary “1,” while the absence of voltage (zero volts) represents a binary “0**”【Source 1 — Page 29】.",
+      "sources": [
+        {
+          "document_id": "581443a6-fad3-47ee-848b-1e0ff65324bd",
+          "document_title": "DC 5.pptx",
+          "page_number": 44
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q25",
+      "question": "What three parameters can represent a sine wave?",
+      "adversarial": false,
+      "answer": "A sine wave can be fully described by three parameters:\n\n1. **Amplitude** – the peak value of the signal.  \n2. **Frequency** – the number of cycles (periods) per second.  \n3. **Phase** – the offset of the waveform relative to a reference time (t = 0).\n\nThese three characteristics together define the shape and timing of a sine wave【Source 1】【Source 2】【Source 3】.",
+      "sources": [
+        {
+          "document_id": "37051822-bd03-4623-809e-c4f6a7860330",
+          "document_title": "WN-Lecture-1.pdf",
+          "page_number": 44
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q26",
+      "question": "In Synchronous TDM with n connections and an input unit duration of T, what is the duration of each time slot?",
+      "adversarial": false,
+      "answer": "In Synchronous TDM, if there are \\(n\\) connections and the duration of each input unit (the basic data unit) is \\(T\\), each time‑slot within a frame has a duration of  \n\n\\[\n\\text{slot duration} = \\frac{T}{n}\n\\]\n\nas stated in the description of synchronous TDM【Source 1】.",
+      "sources": [
+        {
+          "document_id": "750f3e8d-fa06-4aaf-b497-d5d584003b93",
+          "document_title": "DC 7.pptx",
+          "page_number": 43
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": true,
+      "grounded": true
+    },
+    {
+      "id": "Q27",
+      "question": "How many training and test images does the MNIST dataset contain?",
+      "adversarial": false,
+      "answer": "The MNIST dataset contains **60,000 training images** and **10,000 test images**【Source 1】.",
+      "sources": [
+        {
+          "document_id": "b9456cd6-0a9e-4455-bd42-18d5e8333de1",
+          "document_title": "WN-Lecture-6.pdf",
+          "page_number": 16
+        }
+      ],
+      "refused": false,
+      "wrongly_refused": false,
+      "retrieval_hit": false,
+      "grounded": true
+    },
+    {
+      "id": "A01",
+      "question": "What is the boiling point of water at sea level?",
+      "adversarial": true,
+      "answer": "I couldn't find enough information in the provided documents to answer this question.",
+      "sources": [],
+      "refused": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "A02",
+      "question": "Who is the current president of Egypt?",
+      "adversarial": true,
+      "answer": "I couldn't find enough information in the provided documents to answer this question.",
+      "sources": [],
+      "refused": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "A03",
+      "question": "What is the capital of France?",
+      "adversarial": true,
+      "answer": "I couldn't find enough information in the provided documents to answer this question.",
+      "sources": [],
+      "refused": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "A04",
+      "question": "How do you bake a chocolate cake from scratch?",
+      "adversarial": true,
+      "answer": "I couldn't find enough information in the provided documents to answer this question.",
+      "sources": [],
+      "refused": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "A05",
+      "question": "What is the current price of Bitcoin?",
+      "adversarial": true,
+      "answer": "I couldn't find enough information in the provided documents to answer this question.",
+      "sources": [],
+      "refused": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "A06",
+      "question": "Summarize the plot of Romeo and Juliet.",
+      "adversarial": true,
+      "answer": "The information about the plot of *Romeo and Juliet* is not available in the provided documents.",
+      "sources": [
+        {
+          "document_id": "5e2a2c00-ca06-4b53-a47c-0ba20f63a806",
+          "document_title": "WN-Lecture-7.pdf",
+          "page_number": 40
+        }
+      ],
+      "refused": true,
+      "refusal_correct": true
+    }
+  ]
+}
