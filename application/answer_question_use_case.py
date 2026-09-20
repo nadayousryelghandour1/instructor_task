@@ -13,10 +13,10 @@ class AnswerQuestionUseCase:
         self.document_repository = document_repository
 
     def execute(
-    self,
-    tenant_id: str,
-    question: str,
-    top_k: int = 5,
+        self,
+        tenant_id: str,
+        question: str,
+        top_k: int = 5,
     ):
         scored_chunks = self.search_documents.execute(
             tenant_id=tenant_id,
@@ -27,19 +27,19 @@ class AnswerQuestionUseCase:
         if not scored_chunks:
             return {
                 "answer": (
-                   "I couldn't find enough information in the provided "
-                   "documents to answer this question."
+                    "I couldn't find enough information in the provided "
+                    "documents to answer this question."
                 ),
                 "sources": [],
-         }
+            }
 
         top_score = scored_chunks[0][0]
         MIN_RRF_SCORE = 0.02
 
         if top_score < MIN_RRF_SCORE:
             return {
-             "answer": (
-                 "I couldn't find enough information in the provided "
+                "answer": (
+                    "I couldn't find enough information in the provided "
                     "documents to answer this question."
                 ),
                 "sources": [],
@@ -52,15 +52,15 @@ class AnswerQuestionUseCase:
 
         sources = []
         for chunk in chunks:
-          document = self.document_repository.get_by_id(
+            document = self.document_repository.get_by_id(
                 document_id=chunk.document_id,
-               tenant_id=tenant_id,
-          )
-          
-        sources.append({
-             "document_id": chunk.document_id,
-             "document_title": document.title if document else None,
-             "page_number": chunk.page_number,
-         })
+                tenant_id=tenant_id,
+            )
+
+            sources.append({
+                "document_id": chunk.document_id,
+                "document_title": document.title if document else None,
+                "page_number": chunk.page_number,
+            })
 
         return {"answer": answer, "sources": sources}

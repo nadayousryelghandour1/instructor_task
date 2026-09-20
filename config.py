@@ -5,6 +5,8 @@ class Settings(BaseSettings):
     similarity_threshold: float = 0.015
     openai_api_key: str
     groq_api_key: str
+    jwt_secret_key: str
+    jwt_algorithm: str = "HS256"
 
     model_config = SettingsConfigDict(
         env_file=".env",
