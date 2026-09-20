@@ -1,0 +1,21 @@
+:root {
+  --navy: #0b1533;
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --line: #dfe4f0;
+  --text: #101828;
+  --muted: #5b6478;
+  --danger: #b42318; --danger-bg: #fdeaea; --danger-line: #f3b8b8;
+  --success: #067647; --success-bg: #e7f6ee; --success-line: #a9dcc0;
+  --info: #175cd3; --info-bg: #eaf1fd; --info-line: #b7cdf5;
+  --radius: 8px;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+}
