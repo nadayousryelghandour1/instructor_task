@@ -25,7 +25,8 @@ from application.search_documents_use_case import SearchDocumentsUseCase
 from application.answer_question_use_case import AnswerQuestionUseCase
 from application.prompt_builder import PromptBuilder
 from infrastructure.llm_service import LLMService
-
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 
 def get_session():
     session = SessionLocal()
@@ -243,3 +244,4 @@ def get_approve_item_use_case(
         assessment_item_repository=assessment_item_repository,
         agent_run_repository=agent_run_repository,
     )
+limiter = Limiter(key_func=get_remote_address)

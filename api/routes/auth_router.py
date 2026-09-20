@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Request
 from fastapi.security import OAuth2PasswordRequestForm
 
 from api.schemas import LoginRequest, RegisterRequest
@@ -6,12 +6,15 @@ from api.dependencies import get_login_use_case, get_register_use_case
 from application.login_use_case import LoginUseCase
 from application.register_user_use_case import RegisterUserUseCase
 from infrastructure.security import create_access_token
+from api.dependencies import limiter
 
 router = APIRouter()
 
 
 @router.post("/login")
+@limiter.limit("5/minute")
 def login(
+    request: Request,
     credentials: LoginRequest,
     login_use_case: LoginUseCase = Depends(get_login_use_case),
 ):
@@ -36,7 +39,6 @@ def login(
         "access_token": token,
         "token_type": "bearer",
     }
-
 
 @router.post("/token")
 def token(
