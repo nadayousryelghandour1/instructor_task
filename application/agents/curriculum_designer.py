@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-from application.search_documents_use_case import SearchDocumentsUseCase
-from infrastructure.llm_service import LLMService
+from application.tools.search_corpus_tool import SearchCorpusTool
+from application.tools.generate_text import GenerateTextTool
 
 
 class CurriculumDesignerInput(BaseModel):
@@ -31,15 +31,18 @@ class CurriculumDesignerAgent:
     It never invents a module that isn't backed by a mapped standard: if the
     Standards Mapper found no evidence, this agent is never called (the
     orchestrator degrades gracefully instead of guessing).
+
+    Tools used: search_corpus, generate_text (both read-only —
+    see application/tools/).
     """
 
     def __init__(
         self,
-        search_documents: SearchDocumentsUseCase,
-        llm_service: LLMService,
+        search_corpus_tool: SearchCorpusTool,
+        generate_text_tool: GenerateTextTool,
     ):
-        self.search_documents = search_documents
-        self.llm_service = llm_service
+        self.search_corpus_tool = search_corpus_tool
+        self.generate_text_tool = generate_text_tool
 
     def run(
         self,
@@ -53,9 +56,9 @@ class CurriculumDesignerAgent:
                 modules=[],
             )
 
-        chunks = self.search_documents.execute(
+        chunks = self.search_corpus_tool.run(
             tenant_id=tenant_id,
-            question=input_data.learning_goal,
+            query=input_data.learning_goal,
             top_k=5,
         )
 
@@ -109,6 +112,6 @@ Return ONLY valid JSON using exactly this structure:
 }}
 """
 
-        response = self.llm_service.generate(prompt)
+        response = self.generate_text_tool.run(prompt)
 
         return CurriculumDesignerOutput.model_validate_json(response)

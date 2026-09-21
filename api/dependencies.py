@@ -7,6 +7,8 @@ from application.agents.curriculum_designer import CurriculumDesignerAgent
 from application.agents.item_generator import ItemGeneratorAgent
 from application.agents.orchestrator import CurriculumWorkflowOrchestrator
 from application.approve_item_use_case import ApproveAssessmentItemUseCase
+from application.tools.generate_text import GenerateTextTool
+from application.tools.search_corpus_tool import SearchCorpusTool
 from infrastructure.agent_run_repository import AgentRunRepository
 from infrastructure.assessment_item_repository import AssessmentItemRepository
 from application.login_use_case import LoginUseCase
@@ -27,6 +29,10 @@ from application.prompt_builder import PromptBuilder
 from infrastructure.llm_service import LLMService
 from slowapi import Limiter
 from slowapi.util import get_remote_address
+
+
+limiter = Limiter(key_func=get_remote_address)
+
 
 def get_session():
     session = SessionLocal()
@@ -160,7 +166,7 @@ def get_answer_question_use_case(
         llm_service=llm_service,
         document_repository=document_repository,
     )
-    
+
 
 def get_standards_mapper_agent(
     search_documents: SearchDocumentsUseCase = Depends(
@@ -168,10 +174,12 @@ def get_standards_mapper_agent(
     ),
 ):
     llm_service = LLMService()
+    search_corpus_tool = SearchCorpusTool(search_documents)
+    generate_text_tool = GenerateTextTool(llm_service)
 
     return StandardsMapperAgent(
-        search_documents=search_documents,
-        llm_service=llm_service,
+        search_corpus_tool=search_corpus_tool,
+        generate_text_tool=generate_text_tool,
     )
 
 
@@ -181,17 +189,20 @@ def get_curriculum_designer_agent(
     ),
 ):
     llm_service = LLMService()
+    search_corpus_tool = SearchCorpusTool(search_documents)
+    generate_text_tool = GenerateTextTool(llm_service)
 
     return CurriculumDesignerAgent(
-        search_documents=search_documents,
-        llm_service=llm_service,
+        search_corpus_tool=search_corpus_tool,
+        generate_text_tool=generate_text_tool,
     )
 
 
 def get_item_generator_agent():
     llm_service = LLMService()
+    generate_text_tool = GenerateTextTool(llm_service)
 
-    return ItemGeneratorAgent(llm_service=llm_service)
+    return ItemGeneratorAgent(generate_text_tool=generate_text_tool)
 
 
 def get_agent_run_repository(
@@ -244,4 +255,3 @@ def get_approve_item_use_case(
         assessment_item_repository=assessment_item_repository,
         agent_run_repository=agent_run_repository,
     )
-limiter = Limiter(key_func=get_remote_address)

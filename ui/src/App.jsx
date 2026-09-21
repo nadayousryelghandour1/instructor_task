@@ -1,17 +1,15 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import CreateOrgPage from "./pages/CreateOrgPage";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/create-org" element={<CreateOrgPage />} />
+    <Routes>
+      <Route path="/create-org" element={<CreateOrgPage />} />
 
-        <Route
-          path="*"
-          element={<Navigate to="/create-org" replace />}
-        />
-      </Routes>
-    </BrowserRouter>
+      <Route
+        path="*"
+        element={<Navigate to="/create-org" replace />}
+      />
+    </Routes>
   );
 }

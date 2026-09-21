@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from infrastructure.llm_service import LLMService
+from application.tools.generate_text import GenerateTextTool
 
 
 class ItemGeneratorInput(BaseModel):
@@ -33,10 +33,12 @@ class ItemGeneratorAgent:
     edit-and-approve each one via the review endpoint before it counts as
     real output. This is the system's human-in-the-loop gate
     (principle #2 - the human holds the pen).
+
+    Tool used: generate_text (read-only — see application/tools/).
     """
 
-    def __init__(self, llm_service: LLMService):
-        self.llm_service = llm_service
+    def __init__(self, generate_text_tool: GenerateTextTool):
+        self.generate_text_tool = generate_text_tool
 
     def run(self, input_data: ItemGeneratorInput) -> ItemGeneratorOutput:
 
@@ -91,6 +93,6 @@ Return ONLY valid JSON using exactly this structure:
 }}
 """
 
-        response = self.llm_service.generate(prompt)
+        response = self.generate_text_tool.run(prompt)
 
         return ItemGeneratorOutput.model_validate_json(response)

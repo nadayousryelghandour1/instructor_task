@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-from application.search_documents_use_case import SearchDocumentsUseCase
-from infrastructure.llm_service import LLMService
+from application.tools.search_corpus_tool import SearchCorpusTool
+from application.tools.generate_text import GenerateTextTool
 
 
 class StandardsMapperInput(BaseModel):
@@ -21,14 +21,21 @@ class StandardsMapperOutput(BaseModel):
 
 
 class StandardsMapperAgent:
+    """
+    First agent in the D3 workflow. Maps a learning goal to concrete
+    competencies/topics found in the tenant's corpus.
+
+    Tools used: search_corpus, generate_text (both read-only —
+    see application/tools/).
+    """
 
     def __init__(
         self,
-        search_documents: SearchDocumentsUseCase,
-        llm_service: LLMService,
+        search_corpus_tool: SearchCorpusTool,
+        generate_text_tool: GenerateTextTool,
     ):
-        self.search_documents = search_documents
-        self.llm_service = llm_service
+        self.search_corpus_tool = search_corpus_tool
+        self.generate_text_tool = generate_text_tool
 
     def run(
         self,
@@ -36,12 +43,11 @@ class StandardsMapperAgent:
         input_data: StandardsMapperInput,
     ) -> StandardsMapperOutput:
 
-        chunks = self.search_documents.execute(
+        chunks = self.search_corpus_tool.run(
             tenant_id=tenant_id,
-            question=input_data.learning_goal,
+            query=input_data.learning_goal,
             top_k=5,
         )
-        
 
         print("RETRIEVED CHUNKS:")
         for score, chunk in chunks:
@@ -92,8 +98,8 @@ Return ONLY valid JSON using exactly this structure:
 }}
 """
 
-        response = self.llm_service.generate(prompt)
-        
+        response = self.generate_text_tool.run(prompt)
+
         print("LLM RESPONSE:")
         print(response)
 
