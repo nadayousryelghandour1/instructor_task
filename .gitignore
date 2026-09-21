@@ -35,3 +35,4 @@ Thumbs.db
 
 # --- Keep the seed corpus tracked, but not its extracted artifacts ---
 corpus/**/*.tmp
+ui.zip

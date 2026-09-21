@@ -1,7 +1,10 @@
+import os  # NEW
+
 from dotenv import load_dotenv
 load_dotenv()
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware  # NEW
 from api.routes.auth_router import router as auth_router
 from api.routes.tenants_router import router as tenants_router
 from api.routes.users_router import router as users_router
@@ -33,6 +36,14 @@ app.include_router(onboard_router)
 app.include_router(chat_router)
 app.include_router(workflow_router)
 app.add_middleware(CorrelationIdMiddleware)
+
+cors_origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",") if o.strip()]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=cors_origins,
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 
 @app.get("/")
 def read_root():

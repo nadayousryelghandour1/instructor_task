@@ -1,48 +1,51 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 export const tokenStorage = {
-  get() {
-    return localStorage.getItem("access_token");
-  },
-  set(token) {
-    localStorage.setItem("access_token", token);
-  },
-  clear() {
-    localStorage.removeItem("access_token");
-  },
+  get: () => localStorage.getItem("access_token"),
+  set: (token) => localStorage.setItem("access_token", token),
+  clear: () => localStorage.removeItem("access_token"),
 };
 
-export async function api(path, { method = "GET", body, headers = {} } = {}) {
-  const url = `${API_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
-  const token = tokenStorage.get();
+// FastAPI returns `detail` as a string, or as a list of objects for validation errors.
+function toMessage(data, fallback) {
+  const detail = data?.detail ?? data?.message;
+  if (typeof detail === "string") return detail;
+  if (Array.isArray(detail)) return detail.map((item) => item.msg).join(", ");
+  return fallback;
+}
 
-  const response = await fetch(url, {
+export async function api(path, { method = "GET", body, headers = {}, signal } = {}) {
+  const token = tokenStorage.get();
+  const isForm = body instanceof FormData;
+
+  const response = await fetch(`${API_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`, {
     method,
+    signal,
     headers: {
-      "Content-Type": "application/json",
-      ...headers,
+      ...(body !== undefined && !isForm ? { "Content-Type": "application/json" } : {}),
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...headers,
     },
-    ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+    body: body === undefined ? undefined : isForm ? body : JSON.stringify(body),
   });
 
-  if (response.status === 204) {
-    return null;
+  // A 401 with a token means the session expired. Without a token it is just a failed login.
+  if (response.status === 401 && token) {
+    tokenStorage.clear();
+    window.dispatchEvent(new Event("auth:logout"));
   }
 
-  const contentType = response.headers.get("content-type") || "";
-  const data = contentType.includes("application/json") ? await response.json() : await response.text();
+  if (response.status === 204) return null;
+
+  const isJson = (response.headers.get("content-type") || "").includes("application/json");
+  const data = isJson ? await response.json() : await response.text();
 
   if (!response.ok) {
     const message =
-      typeof data === "string"
-        ? data
-        : data?.detail || data?.message || "Request failed";
-
+      typeof data === "string" ? data || response.statusText : toMessage(data, "Request failed");
     const error = new Error(message);
     error.status = response.status;
     throw error;
   }
-
   return data;
 }
