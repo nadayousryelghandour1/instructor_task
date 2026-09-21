@@ -1,11 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { Box, List, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
-import { alpha } from "@mui/material/styles";
 import Brand from "./Brand";
 import { NAV_SECTIONS } from "../config/nav";
 import { useAuth } from "../provider/useAuth";
 
-// Navigation inside the app shell. Links come from config/nav.js, filtered by the user's role.
 export default function SidebarNav({ onNavigate }) {
   const { user } = useAuth();
 
@@ -15,15 +13,15 @@ export default function SidebarNav({ onNavigate }) {
   })).filter((section) => section.items.length > 0);
 
   return (
-    <Box sx={{ px: 2, py: 3, display: "flex", flexDirection: "column", gap: 3 }}>
-      <Box sx={{ px: 1 }}>
-        <Brand inverted showTagline={false} />
+    <Box sx={{ px: 1.75, py: 2.5, display: "flex", flexDirection: "column", gap: 2.5, height: "100%", background: "#edf3fb" }}>
+      <Box sx={{ px: 0.5, py: 0.5 }}>
+        <Brand showTagline={false} />
       </Box>
 
       {sections.map((section, index) => (
         <Box key={section.title ?? index}>
           {section.title && (
-            <Typography variant="body2" sx={{ px: 1.5, mb: 0.5, color: alpha("#fff", 0.55) }}>
+            <Typography variant="caption" sx={{ px: 1.2, mb: 1, display: "block", color: "#64748b", textTransform: "uppercase", letterSpacing: 0.8, fontWeight: 700 }}>
               {section.title}
             </Typography>
           )}
@@ -35,10 +33,17 @@ export default function SidebarNav({ onNavigate }) {
                 to={path}
                 onClick={onNavigate}
                 sx={{
-                  borderRadius: 1.5,
-                  color: alpha("#fff", 0.75),
-                  "&:hover": { bgcolor: alpha("#fff", 0.06) },
-                  "&.active": { bgcolor: alpha("#fff", 0.12), color: "#fff" },
+                  borderRadius: 1.75,
+                  px: 1.2,
+                  py: 1,
+                  color: "#334155",
+                  background: "transparent",
+                  "&:hover": { background: "rgba(148,163,184,0.12)" },
+                  "&.active": {
+                    background: "linear-gradient(90deg, rgba(37,99,235,0.12), rgba(37,99,235,0.04))",
+                    color: "#0f172a",
+                    boxShadow: "inset 0 0 0 1px rgba(37,99,235,0.06)",
+                  },
                 }}
               >
                 <ListItemIcon sx={{ minWidth: 36, color: "inherit" }}>

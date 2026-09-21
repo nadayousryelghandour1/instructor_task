@@ -17,6 +17,7 @@ class AnswerQuestionUseCase:
         tenant_id: str,
         question: str,
         top_k: int = 5,
+        history: list[str] | None = None,
     ):
         scored_chunks = self.search_documents.execute(
             tenant_id=tenant_id,
@@ -47,7 +48,11 @@ class AnswerQuestionUseCase:
 
         chunks = [chunk for score, chunk in scored_chunks]
 
-        prompt = self.prompt_builder.build(question=question, chunks=chunks)
+        prompt = self.prompt_builder.build(
+            question=question,
+            chunks=chunks,
+            history=history,
+        )
         answer = self.llm_service.generate(prompt)
 
         sources = []

@@ -1,6 +1,5 @@
 import { createTheme, alpha } from "@mui/material/styles";
 
-// Colours come from the "Calm Enterprise Academy" design system.
 const { augmentColor } = createTheme().palette;
 const tertiary = augmentColor({ color: { main: "#291000" }, name: "tertiary" });
 const neutral = augmentColor({ color: { main: "#1e293b" }, name: "neutral" });
@@ -15,17 +14,17 @@ const theme = createTheme({
     error: { main: "#b42318" },
     success: { main: "#067647" },
     warning: { main: "#b54708" },
-    background: { default: "#f4f6fb", paper: "#ffffff" },
-    text: { primary: "#1e293b", secondary: "#5b6478" },
+    background: { default: "#eff4fd", paper: "#ffffff" },
+    text: { primary: "#0f172a", secondary: "#5b6478" },
     divider: "#dfe4f0",
   },
-  shape: { borderRadius: 8 },
+  shape: { borderRadius: 10 },
   typography: {
     fontFamily: "Inter, system-ui, sans-serif",
+    h3: { fontWeight: 800, letterSpacing: "-0.03em" },
     h4: { fontWeight: 700 },
     h5: { fontWeight: 700 },
     button: { textTransform: "none", fontWeight: 600 },
-    // Nothing in the UI is smaller than 13px so it stays readable in recordings.
     caption: { fontSize: "0.8125rem" },
     overline: { fontSize: "0.8125rem" },
   },
@@ -33,7 +32,7 @@ const theme = createTheme({
     MuiButton: {
       defaultProps: { disableElevation: true },
       styleOverrides: {
-        root: { borderRadius: 6, padding: "10px 16px" },
+        root: { borderRadius: 8, padding: "10px 16px" },
         containedPrimary: {
           "&.Mui-disabled": { backgroundColor: "#0b1533", color: "#fff", opacity: 0.6 },
         },
@@ -48,6 +47,7 @@ const theme = createTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           backgroundColor: theme.palette.background.paper,
+          borderRadius: 10,
           "& fieldset": { borderColor: theme.palette.divider },
           "&:hover fieldset": { borderColor: theme.palette.text.secondary },
           "&.Mui-focused fieldset": { borderColor: theme.palette.secondary.main, borderWidth: 1 },
